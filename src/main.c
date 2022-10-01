@@ -10,147 +10,93 @@
 // /*                                                                            */
 // /* ************************************************************************** */
 
-// #include "example.h"
-// #include "../libft/libft.h"
-// #include <stdio.h>
-// int	key_hook(int keycode)
-// {
-// 	// Esc = 53
-// 	if (keycode == 53)
-// 		exit(1);
-// 	return (0);
-// }
-
-// int	main(void)
-// {
-// 	// int a = ft_atoi("1");
-// 	// printf("%d\n", a);
-// 	t_mlx	mlx; //Here I first create my struct that will contains all the "MLX stuff"
-// 	int		count_w;
-// 	int		count_h;
-
-// 	count_h = -1;
-// 	//First you need to call mlx_init and store its return value.
-// 	mlx.mlx_ptr = mlx_init();
-// 	//Now do the same with mlx_new_window
-// 	mlx.win = mlx_new_window(mlx.mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "A simple example");
-// 	//One more time with mlx_new_image
-// 	mlx.img.img_ptr = mlx_new_image(mlx.mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
-// 	/*
-// 	 Now the important part :
-// 	 mlx_get_data_addr will return a char* that is 4 times the (width * height) of your image.
-// 	 Why so ? Let me explain : This char* will represent your image, pixel by pixel,
-// 	 and the values of this array are the colors. That's why the array is 4 times bigger :
-// 	 you need 4 char to code the color of each pixels (one for Red, Green and Blue) and one for the alpha.
-// 	 But... it's not very convenient, right ? So here is my little trick : you cast
-// 	 mlx_get_data_addr as an int* and store it in an int*.
-// 	 This way, the array will have the exact same size as your window, and each index
-// 	 will represent one complete color of a pixel !
-// 	*/
-// 	mlx.img.data = (int *)mlx_get_data_addr(mlx.img.img_ptr, &mlx.img.bpp, &mlx.img.size_l,
-// 		&mlx.img.endian);
-// 	/*
-// 	 Now just a little example : here is a loop that will draw each pixels that
-// 	 have an odd width in white and the ones that have an even width in black.
-// 	*/
-// 	while (++count_h < WIN_HEIGHT)
-// 	{
-// 		count_w = -1;
-// 		while (++count_w < WIN_WIDTH)
-// 		{
-// 			if (count_w % 2)
-// 				/*
-// 				 As you can see here instead of using the mlx_put_pixel function
-// 				 I just assign a color to each pixel one by one in the image,
-// 				 and the image will be printed in one time at the end of the loop.
-// 				 Now one thing to understand here is that you're working on a 1-dimensional
-// 				 array, while your window is (obviously) 2-dimensional.
-// 				 So, instead of having data[height][width] here you'll have the following
-// 				 formula : [current height * max width + current width] (as you can see below)
-// 				*/
-// 				mlx.img.data[count_h * WIN_WIDTH + count_w] = 0xFFFFFF;
-// 			else
-// 				mlx.img.data[count_h * WIN_WIDTH + count_w] = 0;
-// 		}
-// 	}
-// 	//Now you just have to print the image using mlx_put_image_to_window !
-// 	mlx_put_image_to_window(mlx.mlx_ptr, mlx.win, mlx.img.img_ptr, 0, 0);
-// 	mlx_key_hook(mlx.win, key_hook, &mlx);
-// 	mlx_loop(mlx.mlx_ptr);
-// 	return (0);
-// }
-
-
 #include <fcntl.h>
 #include <stdio.h>
 #include "../libft/libft.h"
 #include "../libft/get_next_line.h"
+#include "../inc/cube3d.h"
 
-static int		find_length(char *str, char *charset)
+
+void	get_texture(char *texture_path, t_texture *texture)
 {
-	int count;
-
-	count = 0;
-	while (*str)
-		if (!ft_strchr(charset, *str++))
-			count++;
-	return (count);
+	texture->path = ft_strdup(texture_path);
 }
 
-static void		import_str(char **dest, char *src, int start, int end)
+int	is_str_digit(char *c)
 {
-	if (!(*dest = malloc(((end - start + 1) * sizeof(char)))))
-		return ;
-	ft_strlcpy(*dest, src, end - start);
-	(*dest)[end - start] = '\0';
-}
-
-char			**ft_split2(char *str, char *charset)
-{
-	char	**strs;
-	int		i;
-	int		j;
-	int		k;
-
-	j = 0;
-	k = 0;
-	if (str == 0)
+	if (!c)
 		return (0);
-	if (!(strs = malloc((find_length(str, charset) + 1) * sizeof(char *))))
-		return (0);
-	while (str[j] != '\0')
+	while (*c)
 	{
-		i = j;
-		while (!ft_strchr(charset, str[j]) && str[j] != '\0')
-			j++;
-		if (i != j)
-			import_str(&strs[k++], &str[i], i, j);
-		else
-			j++;
+		if (!ft_isdigit((*c)))
+		{
+			printf("not digit\n");
+			return (0);
+		}
+		c++;
 	}
-	strs[k] = 0;
-	return (strs);
+	return (1);
 }
 
-void	get_texture(char *texture_path)
+void	free_strs(char **strs)
 {
-	char *path;
-
-	path = ft_strdup(texture_path);
-	printf("path: %s\n", path);
+	while (*strs)
+		free(*strs++);
 }
 
-void	get_data(char **strs)
+void	get_color(char *color_path, t_color *color)
 {
-	// printf("strs[0]: %s\n", strs[0]);
-	// // printf("strs[0][1]: %c\n", strs[0][1]);
-	// printf("strs[1]: %s\n", strs[1]);
-	// // printf("strs[1][1]: %c\n", strs[1][1]);
-	// printf("strs[2]: %s\n", strs[2]);
+	char			**color_split;
+	unsigned int	i;
+
+	i = 0;
+	color_split = ft_split(color_path, ',');
+	while (color_split[i] && is_str_digit(color_split[i]))
+		i++;
+	if (i == 3)
+	{
+		color->r = ft_atoi(color_split[0]);
+		color->g = ft_atoi(color_split[1]);
+		color->b = ft_atoi(color_split[2]);
+	}
+	free_strs(color_split);
+	free(color_split);
+}
+
+void	get_data(char **strs, t_scene *scene)
+{
 	if (strs[0] == 0)
 		return ;
-	else if (!ft_strcmp(strs[0], "N") && strs[1] != 0 && strs[2] == 0)
-		get_texture(strs[1]);
+	else if (ft_strstr(strs[0], "NO ") != NULL && strs[1] == NULL)
+	{
+		get_texture(&strs[0][3], &scene->no_tex);
+	}
+	else if (ft_strstr(strs[0], "SO ") != NULL && strs[1] == NULL)
+	{
+		get_texture(&strs[0][3], &scene->so_tex);
+	}
+	else if (ft_strstr(strs[0], "WE ") != NULL && strs[1] == NULL)
+	{
+		get_texture(&strs[0][3], &scene->we_tex);
+	}
+	else if (ft_strstr(strs[0], "EA ") != NULL && strs[1] == NULL)
+	{
+		get_texture(&strs[0][3], &scene->ea_tex);
+	}
+	else if (ft_strstr(strs[0], "F ") != NULL && strs[1] == NULL)
+	{
+		get_color(&strs[0][2], &scene->floor_color);
+	}
+	else if (ft_strstr(strs[0], "C ") != NULL && strs[1] == NULL)
+	{
+		get_color(&strs[0][2], &scene->ceiling_color);
+	}
+	// else
+	// {
+	// 	printf("strs[0]: %s\n", strs[0]);
+	// 	printf("strs[0][1]: %c\n", strs[0][1]);
+	// 	printf("strs[1]: %s\n", strs[1]);
+	// }
 }
 
 int		is_map(char *line)
@@ -174,6 +120,7 @@ int main(int argc, char const *argv[])
 	int		fd;
 	int		len;
 	char	*ext;
+	t_game	game;
 
 	if (argc == 2)
 	{
@@ -190,29 +137,54 @@ int main(int argc, char const *argv[])
 			printf("file is cub\n");
 		else
 			printf("file is not cub\n");
+
+			
 		char	*line;
+		line = 0;
 		char	**strs;
-		int		i;
-		i = -1;
 		line = get_next_line(fd);
+		// (void) game;
 		while (line != NULL)
 		{
+			// if (is_map(line))
+			// {
+			// 	printf("%s", line);
+			// 	free(line);
+			// }
 			if (!is_map(line))
 			{
-				strs = ft_split2(line, " \n\t\v\f\r");
-				// printf("%s", line);
-				// printf("STRS[%d]: %s\n", i, strs[i]);
-				get_data(strs);
-				// if (!ft_strcmp(strs[i], "NO"))
-				free(line);
+				strs = ft_split(line, '\n');
+				get_data(strs, &game.scene);
 				// printf("%s\n", *strs);
-				i++;
-
+				free_strs(strs);
+				free(strs);
+				free(line);
 			}
+			if (is_map(line))
+			{
+				// printf("%s\n", *strs);
+				free(line);
+			}
+			// free(line);
 			line = get_next_line(fd);
+			
 		}
+
+
+		printf("no: %s\n", game.scene.no_tex.path);
+		printf("so: %s\n", game.scene.so_tex.path);
+		printf("we: %s\n", game.scene.we_tex.path);
+		printf("ea: %s\n", game.scene.ea_tex.path);
+		printf("fr: %i\n", game.scene.floor_color.r);
+		printf("fg: %i\n", game.scene.floor_color.g);
+		printf("fb: %i\n", game.scene.floor_color.b);
+		printf("cr: %i\n", game.scene.ceiling_color.r);
+		printf("cg: %i\n", game.scene.ceiling_color.g);
+		printf("cb: %i\n", game.scene.ceiling_color.b);
 		printf("\n\n");
+		// free(line);
 		close(fd);
 	}
+	system("leaks program");
 	return (0);
 }

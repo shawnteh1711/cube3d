@@ -1,6 +1,6 @@
 NAME := libft.a 
 CC 	   := gcc
-CFLAGS := -Wall -Werror -Wextra
+CFLAGS := -Wall -Werror -Wextra #-fsanitize=address
 LIB_FILES = ft_isalpha.c\
 				ft_isdigit.c\
 				ft_isalnum.c\

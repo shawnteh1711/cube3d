@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 10:17:30 by steh              #+#    #+#             */
-/*   Updated: 2022/09/27 19:41:23 by steh             ###   ########.fr       */
+/*   Updated: 2022/10/01 23:05:27 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*ft_read_and_save(int fd, char *save_line)
 	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
 		return (NULL);
-	while (!ft_strchr(save_line, '\n') && read_bytes != 0)
+	while (!ft_strchr_gnl(save_line, '\n') && read_bytes != 0)
 	{
 		read_bytes = read(fd, buffer, BUFFER_SIZE);
 		if (read_bytes == -1)
@@ -75,7 +75,7 @@ char	*ft_save_next_line(char *save_line)
 		free(save_line);
 		return (NULL);
 	}
-	s = (char *)malloc(sizeof(char) * ft_strlen(save_line) - i + 1);
+	s = (char *)malloc(sizeof(char) * ft_strlen_gnl(save_line) - i + 1);
 	if (!s)
 		return (NULL);
 	i++;
