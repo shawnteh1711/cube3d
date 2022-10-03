@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 10:18:34 by steh              #+#    #+#             */
-/*   Updated: 2022/10/01 23:08:09 by steh             ###   ########.fr       */
+/*   Updated: 2022/10/03 23:16:36 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char		*ft_get_line(char *save_line);
 char		*ft_save_next_line(char *save_line);
 size_t		ft_strlen_gnl(char *s);
 size_t		ft_strlcat_gnl(char *dest, char *src, size_t len);
-size_t		ft_strlcpy(char *dest, const char *src, size_t len);
+size_t		ft_strlcpy_gnl(char *dest, const char *src, size_t len);
 char		*ft_strjoin(char *s1, char *s2);
 char		*ft_strchr_gnl( char *str, int c);
 

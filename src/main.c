@@ -19,7 +19,9 @@
 
 void	get_texture(char *texture_path, t_texture *texture)
 {
+	texture_path = ft_strtrim(texture_path, " \t");
 	texture->path = ft_strdup(texture_path);
+	free(texture_path);
 }
 
 int	is_str_digit(char *c)
@@ -50,6 +52,7 @@ void	get_color(char *color_path, t_color *color)
 	unsigned int	i;
 
 	i = 0;
+	color_path = ft_strtrim(color_path, " \t");
 	color_split = ft_split(color_path, ',');
 	while (color_split[i] && is_str_digit(color_split[i]))
 		i++;
@@ -61,33 +64,34 @@ void	get_color(char *color_path, t_color *color)
 	}
 	free_strs(color_split);
 	free(color_split);
+	free(color_path);
 }
 
 void	get_data(char **strs, t_scene *scene)
 {
 	if (strs[0] == 0)
 		return ;
-	else if (ft_strstr(strs[0], "NO ") != NULL && strs[1] == NULL)
+	else if (ft_strstr(strs[0], "NO") != NULL && strs[1] == NULL)
 	{
 		get_texture(&strs[0][3], &scene->no_tex);
 	}
-	else if (ft_strstr(strs[0], "SO ") != NULL && strs[1] == NULL)
+	else if (ft_strstr(strs[0], "SO") != NULL && strs[1] == NULL)
 	{
 		get_texture(&strs[0][3], &scene->so_tex);
 	}
-	else if (ft_strstr(strs[0], "WE ") != NULL && strs[1] == NULL)
+	else if (ft_strstr(strs[0], "WE") != NULL && strs[1] == NULL)
 	{
 		get_texture(&strs[0][3], &scene->we_tex);
 	}
-	else if (ft_strstr(strs[0], "EA ") != NULL && strs[1] == NULL)
+	else if (ft_strstr(strs[0], "EA") != NULL && strs[1] == NULL)
 	{
 		get_texture(&strs[0][3], &scene->ea_tex);
 	}
-	else if (ft_strstr(strs[0], "F ") != NULL && strs[1] == NULL)
+	else if (ft_strstr(strs[0], "F") != NULL && strs[1] == NULL)
 	{
 		get_color(&strs[0][2], &scene->floor_color);
 	}
-	else if (ft_strstr(strs[0], "C ") != NULL && strs[1] == NULL)
+	else if (ft_strstr(strs[0], "C") != NULL && strs[1] == NULL)
 	{
 		get_color(&strs[0][2], &scene->ceiling_color);
 	}
@@ -115,6 +119,102 @@ int		is_map(char *line)
 	return (check);
 }
 
+void	extract_dimension(t_map *map)
+{
+	int		width;
+	int		i;
+
+	map->height = 0;
+	map->width = 0;
+	i = 0;
+	width = 0;
+	while (map->grid[i] != NULL)
+	{
+		width = ft_strlen_cube3d(map->grid[i]);
+		if (width >= map->width)
+			map->width = width;
+		map->height++;
+		i++;
+	}
+	// printf("width: %d\n", map->width);
+	// printf("height: %d\n", map->height);
+}
+
+char	*ft_strdup2(const char *src, size_t col_num)
+{
+	char	*dest;
+	size_t	i;
+
+	i = 0;
+	dest = (char *)malloc(sizeof(char) * (col_num + 1));
+	if (dest == NULL)
+		return (NULL);
+	if (col_num == 0)
+		return (NULL);
+	while (i < col_num)
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}
+
+char**	copy_map(int fd, char *line)
+{
+	size_t	i;
+	size_t	n;
+	char	**arr;
+	
+	i = 0;
+	arr = (char **)malloc(sizeof(char *));
+	while (1)
+	{
+		arr = ft_realloc(arr, (i + 1) * sizeof(char *), (i + 2) * sizeof(char *));
+		n = ft_strlen_cube3d(line);
+		arr[i++] = ft_strdup2(line, n);
+		free(line);
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+	}
+	arr[i] = NULL;
+	// free_strs(arr);
+	// free(arr);
+	return (arr);
+}
+
+// get the map information.
+void	get_map(int fd, char *line, t_map *map)
+{
+	int	i;
+	int	len;
+	char	cpy[10];
+
+	i = 0;
+	while (line[i])
+	{
+
+		len = ft_strlen(line);
+		if (line[i] == '\t')
+		{
+			printf("i:%d\n", i);
+			printf("len:%d\n", len);
+			ft_memmove(cpy, &line[i], 9);
+			// ft_strlcpy(&line[i], "    ", 4);
+			// printf("%s", line);
+			printf("%s", cpy);
+			len += 4;
+		}
+		i++;
+	}
+	map->grid = copy_map(fd, line);
+	extract_dimension(map);
+	// free_strs(map->grid);
+	// free(map->grid);
+}
+
+
 int main(int argc, char const *argv[])
 {
 	int		fd;
@@ -140,51 +240,37 @@ int main(int argc, char const *argv[])
 
 			
 		char	*line;
-		line = 0;
 		char	**strs;
+
 		line = get_next_line(fd);
-		// (void) game;
 		while (line != NULL)
 		{
-			// if (is_map(line))
-			// {
-			// 	printf("%s", line);
-			// 	free(line);
-			// }
+			if (is_map(line))
+				get_map(fd, line, &game.map);
 			if (!is_map(line))
 			{
 				strs = ft_split(line, '\n');
 				get_data(strs, &game.scene);
-				// printf("%s\n", *strs);
 				free_strs(strs);
 				free(strs);
-				free(line);
-			}
-			if (is_map(line))
-			{
-				// printf("%s\n", *strs);
-				free(line);
-			}
-			// free(line);
+			}		
+			free(line);
 			line = get_next_line(fd);
-			
 		}
-
-
-		printf("no: %s\n", game.scene.no_tex.path);
-		printf("so: %s\n", game.scene.so_tex.path);
-		printf("we: %s\n", game.scene.we_tex.path);
-		printf("ea: %s\n", game.scene.ea_tex.path);
-		printf("fr: %i\n", game.scene.floor_color.r);
-		printf("fg: %i\n", game.scene.floor_color.g);
-		printf("fb: %i\n", game.scene.floor_color.b);
-		printf("cr: %i\n", game.scene.ceiling_color.r);
-		printf("cg: %i\n", game.scene.ceiling_color.g);
-		printf("cb: %i\n", game.scene.ceiling_color.b);
-		printf("\n\n");
-		// free(line);
+		// printf("no: %s\n", game.scene.no_tex.path);
+		// printf("so: %s\n", game.scene.so_tex.path);
+		// printf("we: %s\n", game.scene.we_tex.path);
+		// printf("ea: %s\n", game.scene.ea_tex.path);
+		// printf("fr: %i\n", game.scene.floor_color.r);
+		// printf("fg: %i\n", game.scene.floor_color.g);
+		// printf("fb: %i\n", game.scene.floor_color.b);
+		// printf("cr: %i\n", game.scene.ceiling_color.r);
+		// printf("cg: %i\n", game.scene.ceiling_color.g);
+		// printf("cb: %i\n", game.scene.ceiling_color.b);
+		// printf("\n\n");
+		free(line);
 		close(fd);
+		// system("leaks program");
 	}
-	system("leaks program");
 	return (0);
 }

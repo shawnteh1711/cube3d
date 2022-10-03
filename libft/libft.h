@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 13:22:18 by steh              #+#    #+#             */
-/*   Updated: 2022/10/01 22:38:18 by steh             ###   ########.fr       */
+/*   Updated: 2022/10/03 22:24:10 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ void	ft_lstadd_front(t_list **lst, t_list *new);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 char	*ft_strstr(const char* haystack, const char* needle);
 char	*ft_strtok(const char *str, const char *delim);
+size_t	ft_strlen_cube3d(const char *s);
+void	*ft_realloc(void *ptr, size_t orig_size, size_t new_size);
 
 
 #endif

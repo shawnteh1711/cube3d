@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 10:17:30 by steh              #+#    #+#             */
-/*   Updated: 2022/10/01 23:05:27 by steh             ###   ########.fr       */
+/*   Updated: 2022/10/03 23:17:24 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char	*ft_get_line(char *save_line)
 	s = (char *)malloc(sizeof(char) * (i + 2));
 	if (!s)
 		return (NULL);
-	ft_strlcpy(s, save_line, i + 1);
+	ft_strlcpy_gnl(s, save_line, i + 1);
 	if (save_line[i] == '\n')
 		s[i] = save_line[i];
 	s[++i] = '\0';

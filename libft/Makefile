@@ -49,7 +49,9 @@ LIB_FILES = ft_isalpha.c\
 				ft_strstr.c\
 				ft_strtok.c\
 				get_next_line.c\
-				get_next_line_utils.c
+				get_next_line_utils.c\
+				ft_strlen_cube3d.c\
+				ft_realloc.c
 
 OBJ_FILES	=	$(LIB_FILES:%.c=%.o)
 

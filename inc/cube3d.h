@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:17:02 by steh              #+#    #+#             */
-/*   Updated: 2022/10/01 19:02:29 by steh             ###   ########.fr       */
+/*   Updated: 2022/10/01 23:31:44 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,16 @@ typedef struct s_scene
 	t_color		ceiling_color;
 }				t_scene;
 
+typedef struct s_map
+{
+	char		**grid;
+	int			height;
+	int			width;
+}				t_map;
 typedef struct s_game
 {
 	t_scene		scene;
+	t_map		map;
 }				t_game;
 
 

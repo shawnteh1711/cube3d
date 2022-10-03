@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 11:06:45 by steh              #+#    #+#             */
-/*   Updated: 2022/10/01 23:08:01 by steh             ###   ########.fr       */
+/*   Updated: 2022/10/03 23:16:48 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ char	*ft_strjoin(char *s1, char *s2)
 	new = (char *)malloc(sizeof(char) * len);
 	if (new == NULL)
 		return (NULL);
-	ft_strlcpy(new, s1, len);
-	ft_strlcpy(new + ft_strlen_gnl(s1), s2, ft_strlen_gnl(s2) + 1);
+	ft_strlcpy_gnl(new, s1, len);
+	ft_strlcpy_gnl(new + ft_strlen_gnl(s1), s2, ft_strlen_gnl(s2) + 1);
 	free(s1);
 	return (new);
 }
 
-size_t	ft_strlcpy(char *dest, const char *src, size_t len)
+size_t	ft_strlcpy_gnl(char *dest, const char *src, size_t len)
 {
 	size_t	i;
 	size_t	src_size;
