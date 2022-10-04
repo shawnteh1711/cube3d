@@ -1,0 +1,6 @@
+to do
+
+1. handle tab in map
+2. handle newline in between map
+3. check map is enclosed with wall or space
+

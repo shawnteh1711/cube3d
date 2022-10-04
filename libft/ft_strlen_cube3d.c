@@ -1,35 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlen_cube3d.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/04 21:52:52 by steh              #+#    #+#             */
-/*   Updated: 2022/10/04 21:53:06 by steh             ###   ########.fr       */
+/*   Created: 2022/10/03 18:07:45 by steh              #+#    #+#             */
+/*   Updated: 2022/10/03 22:18:33 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "../libft/libft.h"
-#include "../libft/get_next_line.h"
-#include "../inc/struct.h"
-#include "../inc/cube3d.h"
+#include "libft.h"
 
-int	main(int argc, char *argv[])
+size_t	ft_strlen_cube3d(const char *s)
 {
-	int		fd;
-	t_game	game;
+	size_t	i;
 
-	fd = 0;
-	if (argc == 2)
+	i = 0;
+	while (s[i] != '\0' && s[i] != '\n')
 	{
-		fd = check_file(fd, argv);
-		if (fd == -1)
-			exit(EXIT_SUCCESS);
-		get_file(fd, &game);
+		i++;
 	}
-	close(fd);
-	// system("leaks program");
-	return (0);
+	return (i);
 }

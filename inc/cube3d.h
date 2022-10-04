@@ -6,51 +6,43 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:17:02 by steh              #+#    #+#             */
-/*   Updated: 2022/10/01 23:31:44 by steh             ###   ########.fr       */
+/*   Updated: 2022/10/04 16:18:56 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef CUBE3D_H
 # define CUBE3D_H
 
-int	j;
-int	i;
 # include <stdio.h>
+# include <fcntl.h>
+# include <unistd.h>
+# include "../inc/struct.h"
+# include "../libft/libft.h"
+# include "../libft/get_next_line.h"
 
-typedef struct s_color
-{
-	int			r;
-	int			g;
-	int			b;
-}				t_color;
-
-typedef struct s_texture
-{
-	char		*path;
-}				t_texture;
-
-typedef struct s_scene
-{
-	t_texture	no_tex;
-	t_texture	so_tex;
-	t_texture	we_tex;
-	t_texture	ea_tex;
-	t_color		floor_color;
-	t_color		ceiling_color;
-}				t_scene;
-
-typedef struct s_map
-{
-	char		**grid;
-	int			height;
-	int			width;
-}				t_map;
-typedef struct s_game
-{
-	t_scene		scene;
-	t_map		map;
-}				t_game;
+// check.c
+int		check_file(int fd, char **argv);
+int		check_map(t_map *map);
 
 
+
+// get_map.c
+void	get_map(int fd, char *line, t_map *map);
+void	get_data(char **strs, t_scene *scene);
+char**	copy_map(int fd, char *line);
+void	get_texture(char *texture_path, t_texture *texture);
+void	get_color(char *color_path, t_color *color);
+
+
+// get_map2.c
+void	extract_dimension(t_map *map);
+void	get_file(int fd, t_game *game);
+
+// utils.c
+int		is_map(char *line);
+void	free_strs(char **strs);
+char	*ft_strdup2(const char *src, size_t col_num);
+int		is_str_digit(char *c);
 
 #endif
