@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:17:02 by steh              #+#    #+#             */
-/*   Updated: 2022/10/04 16:18:56 by steh             ###   ########.fr       */
+/*   Updated: 2022/10/05 22:40:55 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,13 @@
 
 // check.c
 int		check_file(int fd, char **argv);
-int		check_map(t_map *map);
+void	check_map(t_map *map);
+void	check_tab(char *line);
+void	check_newline(char *line);
 
-
+// check_map.c
+void	check_first_last_row(t_map *map);
+void	check_middle_row(t_map *map);
 
 // get_map.c
 void	get_map(int fd, char *line, t_map *map);

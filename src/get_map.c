@@ -6,12 +6,16 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:18:02 by steh              #+#    #+#             */
-/*   Updated: 2022/10/04 21:51:19 by steh             ###   ########.fr       */
+/*   Updated: 2022/10/05 22:43:31 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cube3d.h"
 
+
+// if last line is empty, still acceptable as it return NULL and break.
+// if contain more than 2 empty line at bottom is not acceptable 
+// and throw error.
 char	**copy_map(int fd, char *line)
 {
 	size_t	i;
@@ -24,9 +28,12 @@ char	**copy_map(int fd, char *line)
 	{
 		arr = ft_realloc(arr, (i + 1) * sizeof(char *),
 				(i + 2) * sizeof(char *));
+		check_tab(line);
+		check_newline(line);
 		n = ft_strlen_cube3d(line);
 		arr[i++] = ft_strdup2(line, n);
-		// free(line);
+		// printf("%s", line);
+		// free(line);   // uncomment to avoid leak. Comment now because fsanatize issue
 		line = get_next_line(fd);
 		if (!line)
 			break ;
@@ -47,46 +54,17 @@ void	ft_realloc_protected(void **ptr, size_t orig_size, size_t new_size)
 // get the map information.
 void	get_map(int fd, char *line, t_map *map)
 {
-	int	i;
-	int	j;
-	int	len;
-
 	map->grid = copy_map(fd, line);
 	extract_dimension(map);
-
-	i = -1;
-	while (++i < map->height)
-	{
-		j = -1;
-		len = ft_strlen(map->grid[i]);
-		if (len < map->width)
-			ft_realloc_protected((void **)&map->grid[i], len + 1, map->width + 1);
-		while (++j < map->width)
-		// while (++j < len)
-		{
-			if (map->grid[i][j] == '\t')
-			{
-				// ft_memove(dest, src, bytetocopy);
-				ft_memmove(&map->grid[i][j + 4], &map->grid[i][j + 1], len - j + 2);
-				ft_strlcpy(&map->grid[i][j], "    ", 4);
-				printf("found tab at %d index %d\n", i, j);
-				len += 4;
-			}
-			else if (j >= len)
-				map->grid[i][j] = ' ';
-		}
-		map->grid[i][j] = '\0';
-	}
-	// check_map(map);
-	for (int i = 0; i < map->height; i++)
-	{
-		printf("%s\n", map->grid[i]);
-		len = (int)ft_strlen_cube3d(map->grid[i]);
-		printf("%d\n", len);
-
-	}
+	check_map(map);
+	// for (int i = 0; i < map->height; i++)
+	// {
+	// 	printf("%s\n", map->grid[i]);
+	// }
 	// free_strs(map->grid);
 	// free(map->grid);
+	// system("leaks program");
+	
 }
 
 void	get_texture(char *texture_path, t_texture *texture)

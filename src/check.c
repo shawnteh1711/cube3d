@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 14:55:52 by steh              #+#    #+#             */
-/*   Updated: 2022/10/04 21:49:05 by steh             ###   ########.fr       */
+/*   Updated: 2022/10/05 22:41:01 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,32 +40,45 @@ int	check_file(int fd, char **argv)
 	return (1);
 }
 
-int	check_map(t_map *map)
+void	check_tab(char *line)
 {
-	size_t	i;
-	int		j;
-
-	i = 1;
-	j = 0;
-	printf("map->wodth: %d\n", map->width);
-	while (j < map->height)
+	int i;
+	
+	i = 0;
+	while (line[i])
 	{
-		i = ft_strlen_cube3d(map->grid[j]);
-		printf("%zu\n", i);
-		j++;
-		// if (map->grid[0][j] != '1'
-		// 	&& map->grid[map->height - 1][j] != '\t')
-		// {
-		// 	printf("row 1 no close with wall\n");
-		// 	return (0);
-		// }
-		// if (map->grid[map->height - 1][j] != '1'
-		//   && map->grid[map->height - 1][j] != ' ')
-		// {
-		// 	printf("last row no close with wall\n");
-		// 	return (0);
-		// }
-		// j++;
+		if (line[i] == '\t')
+		{
+			printf("map cannot contain tab\n");
+			free(line);
+			// system("leaks program");
+			exit(EXIT_SUCCESS);
+		}
+		i++;
 	}
-	return (1);
+}
+
+void	check_newline(char *line)
+{
+	int i;
+	
+	i = 0;
+	while (line[i])
+	{
+		if (line[0] == '\n')
+		{
+			printf("map cannot contain empty line\n");
+			free(line);
+			system("leaks program");
+			exit(EXIT_SUCCESS);
+		}
+		i++;
+	}
+}
+
+// printf("map->grid[%d][%d]: %c\n", i, j, map->grid[i][j]);
+void	check_map(t_map *map)
+{
+	check_first_last_row(map);
+	check_middle_row(map);
 }
