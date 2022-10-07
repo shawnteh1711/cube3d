@@ -6,7 +6,7 @@
 #    By: steh <steh@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/31 12:49:52 by steh              #+#    #+#              #
-#    Updated: 2022/10/05 22:41:48 by steh             ###   ########.fr        #
+#    Updated: 2022/10/07 21:55:53 by steh             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ LIB				:= -L./libft -I./libft -lft
 # LIBFT			:= libft.a
 NAME			= program
 all				: $(NAME)
-				 ./$(NAME) minimalistic.cub
+				 ./$(NAME) ./map/minimalistic.cub
 				@#  ./$(NAME) a.cuba
 
 $(NAME)			: $(OBJ) #$(LIBFT)

@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:17:02 by steh              #+#    #+#             */
-/*   Updated: 2022/10/05 19:05:46 by steh             ###   ########.fr       */
+/*   Updated: 2022/10/07 17:04:39 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_map
 	int			height;
 	int			width;
 	int			error;
+	int			position;
 }				t_map;
 typedef struct s_game
 {

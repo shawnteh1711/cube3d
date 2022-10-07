@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:17:02 by steh              #+#    #+#             */
-/*   Updated: 2022/10/05 22:40:55 by steh             ###   ########.fr       */
+/*   Updated: 2022/10/07 22:23:54 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,24 @@
 # include "../libft/get_next_line.h"
 
 // check.c
-int		check_file(int fd, char **argv);
+int		check_file(char **argv);
 void	check_map(t_map *map);
 void	check_tab(char *line);
 void	check_newline(char *line);
 
+// check2.c
+int		check_file_extension(char *filename, char *ck_ext);
+int		check_file_exits(char *filename);
+
+// check_texture.c
+void	ck_texture(t_game *game);
+
+
 // check_map.c
 void	check_first_last_row(t_map *map);
 void	check_middle_row(t_map *map);
+void	check_unwanted_char(t_map *map);
+
 
 // get_map.c
 void	get_map(int fd, char *line, t_map *map);
@@ -48,5 +58,9 @@ int		is_map(char *line);
 void	free_strs(char **strs);
 char	*ft_strdup2(const char *src, size_t col_num);
 int		is_str_digit(char *c);
+
+// utils2.c
+void	ft_exit(char *s, t_map *map);
+
 
 #endif

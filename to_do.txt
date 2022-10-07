@@ -3,4 +3,7 @@ to do
 1. handle tab in map
 2. handle newline in between map
 3. check map is enclosed with wall or space
+4. check invalid character
+5. check if more than one player spawning position
+6. check if texture path valid and exist
 

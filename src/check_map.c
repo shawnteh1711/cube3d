@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 22:05:00 by steh              #+#    #+#             */
-/*   Updated: 2022/10/05 22:42:05 by steh             ###   ########.fr       */
+/*   Updated: 2022/10/07 17:18:04 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,7 @@ void	check_first_last_row(t_map *map)
 	while (i < width)
 	{
 		if (map->grid[0][i] != '1' && map->grid[0][i] != ' ')
-		{
-			printf("row 1 not enclose with wall\n");
-			// system("leaks program");
-			exit(EXIT_SUCCESS) ;
-		}
+			ft_exit("row 1 not enclose with wall", map);
 		i++;
 	}
 	i = 0;
@@ -36,18 +32,14 @@ void	check_first_last_row(t_map *map)
 	{
 		if (map->grid[map->height - 1][i] != '1'
 			&& map->grid[map->height - 1][i] != ' ')
-		{
-			printf("last row not close with wall\n");
-			// system("leaks program");
-			exit(EXIT_SUCCESS) ;
-		}
+			ft_exit("last row not close with wall", map);
 		i++ ;
 	}
 }
 
 void	check_middle_row(t_map *map)
 {
-		int	i;
+	int	i;
 	int	j;
 	int	width;
 
@@ -56,29 +48,51 @@ void	check_middle_row(t_map *map)
 	{
 		width = ft_strlen_cube3d(map->grid[i]);
 		if (map->grid[i][0] != '1' && map->grid[i][0] != ' ')
-		{
-			printf("mid index 1 not enclose with wall\n");
-			// system("leaks program");
-			exit(EXIT_SUCCESS) ;
-		}
+			ft_exit("mid index 1 not enclose with wall", map);
 		else if (map->grid[i][0] == ' ')
 		{
 			j = 0;
 			while (map->grid[i][j] == ' ')
 				j++;
 			if (map->grid[i][j] != '1')
-			{
-				printf("mid index not enclose with wall\n");
-				// system("leaks program");
-				exit(EXIT_SUCCESS) ;
-			}
+				ft_exit("mid index not enclose with wall", map);
 		}
 		if (map->grid[i][width - 1] != '1' && map->grid[i][width - 1] != ' ')
+			ft_exit("mid last index not enclose with wall", map);
+		i++;
+	}
+}
+
+void		check_unwanted_char(t_map *map)
+{
+	int i;
+	int j;
+	int width;
+
+	i = 0;
+	width = 0;
+	map->position = 0;
+	while (i < map->height)
+	{
+		width = ft_strlen_cube3d(map->grid[i]);
+		// printf("map->height: %d\n", map->height);
+		// printf("width: %d\n", width);
+		j = 0;
+		while (j < width)
 		{
-			printf("mid last index not enclose with wall\n");
-			// system("leaks program");
-			exit(EXIT_SUCCESS) ;
+			if (!ft_strchr("01NSEW ", map->grid[i][j]))
+			{
+				printf("map->grid[%d][%d]: %c\n", i, j,  map->grid[i][j]);
+				ft_exit("map contains invalid character", map);
+			}
+			if (ft_strchr("NSEW", map->grid[i][j]))
+				map->position += 1;
+			j++;
 		}
 		i++;
 	}
+	// printf("map->positon: %d\n", map->position);
+	if (map->position != 1)
+		ft_exit("map error starting position", map);
+	
 }

@@ -6,38 +6,23 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 14:55:52 by steh              #+#    #+#             */
-/*   Updated: 2022/10/05 22:41:01 by steh             ###   ########.fr       */
+/*   Updated: 2022/10/07 22:05:24 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cube3d.h"
 #include "../inc/struct.h"
 
-int	check_file(int fd, char **argv)
+int	check_file(char **argv)
 {
-	int		len;
-	char	*ext;
+	int fd;
 
-	fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
-	{
-		close(fd);
-		printf("file not exit\n");
+	fd = check_file_exits(argv[1]);
+	if (fd == -1)
 		return (-1);
-	}
-	len = ft_strlen(argv[1]);
-	ext = (char *)ft_memchr(argv[1], '.', len);
-	if (!ft_strcmp(ext, ".cub"))
-	{
-		printf("file is cub\n");
-		return (fd);
-	}
-	else
-	{
-		printf("file is not cub\n");
+	if (!check_file_extension(argv[1], ".cub"))
 		return (-1);
-	}
-	return (1);
+	return (fd);
 }
 
 void	check_tab(char *line)
@@ -81,4 +66,5 @@ void	check_map(t_map *map)
 {
 	check_first_last_row(map);
 	check_middle_row(map);
+	check_unwanted_char(map);
 }

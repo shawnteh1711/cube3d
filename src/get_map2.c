@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:21:40 by steh              #+#    #+#             */
-/*   Updated: 2022/10/05 20:02:53 by steh             ###   ########.fr       */
+/*   Updated: 2022/10/07 21:35:50 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,5 @@ void	get_file(int fd, t_game *game)
 	// printf("cr: %i\n", game->scene.ceiling_color.r);
 	// printf("cg: %i\n", game->scene.ceiling_color.g);
 	// printf("cb: %i\n", game->scene.ceiling_color.b);
-	// printf("\n\n");
 	free(line);
 }
