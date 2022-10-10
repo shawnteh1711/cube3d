@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 21:02:14 by steh              #+#    #+#             */
-/*   Updated: 2022/10/07 22:03:14 by steh             ###   ########.fr       */
+/*   Updated: 2022/10/10 07:59:58 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ int	check_file_extension(char *filename, char *ck_ext)
 		return (-1);
 	filename += (len - extlen);
 	if (!ft_strcmp(filename, ck_ext))
-		printf("file is %s\n", ck_ext);
+	{
+		// printf("file is %s\n", ck_ext);
+		return (1);
+	}
 	else
 	{
 		printf("file is not %s\n", ck_ext);

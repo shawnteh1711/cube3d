@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:18:02 by steh              #+#    #+#             */
-/*   Updated: 2022/10/07 21:33:35 by steh             ###   ########.fr       */
+/*   Updated: 2022/10/10 18:59:17 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,9 @@ void	get_color(char *color_path, t_color *color)
 	unsigned int	i;
 
 	i = 0;
+	// color->r = -1;
+	// color->g = -1;
+	// color->b = -1;
 	color_path = ft_strtrim(color_path, " \t");
 	color_split = ft_split(color_path, ',');
 	while (color_split[i] && is_str_digit(color_split[i]))

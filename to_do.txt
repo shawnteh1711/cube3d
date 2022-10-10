@@ -6,4 +6,6 @@ to do
 4. check invalid character
 5. check if more than one player spawning position
 6. check if texture path valid and exist
+7. learn about basic raycasting
+8. check if unknown identifier or missing identifier
 

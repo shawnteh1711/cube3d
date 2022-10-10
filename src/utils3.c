@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils2.c                                           :+:      :+:    :+:   */
+/*   utils3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/06 22:19:02 by steh              #+#    #+#             */
-/*   Updated: 2022/10/10 08:38:56 by steh             ###   ########.fr       */
+/*   Created: 2022/10/10 14:26:25 by steh              #+#    #+#             */
+/*   Updated: 2022/10/10 19:16:15 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cube3d.h"
 
-void	ft_exit(char *s, t_map *map)
+double	deg_to_rad(double deg)
 {
-	(void)map;
-	printf("%s\n", s);
-	// free_strs(map->grid);
-	// free(map->grid);
-	// system("leaks program");
-	exit(EXIT_SUCCESS);
+	return (deg * M_PI / 180.0);
+}
+
+// produce following
+// AAAAAAAA000000000000000000000000
+//         RRRRRRRR0000000000000000
+//                 GGGGGGGG00000000
+//                         BBBBBBBB
+// --------------------------------
+// AAAAAAAARRRRRRRRGGGGGGGGBBBBBBBB
+int		create_argb(int a, int r, int g, int b)
+{
+	return (a << 24 | r << 16 | g << 8 | b);
 }

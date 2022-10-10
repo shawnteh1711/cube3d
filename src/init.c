@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils2.c                                           :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/06 22:19:02 by steh              #+#    #+#             */
-/*   Updated: 2022/10/10 08:38:56 by steh             ###   ########.fr       */
+/*   Created: 2022/10/10 19:01:06 by steh              #+#    #+#             */
+/*   Updated: 2022/10/10 19:01:23 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cube3d.h"
+# include "../inc/cube3d.h"
+# include "../inc/struct.h"
 
-void	ft_exit(char *s, t_map *map)
+void	init(t_game *game)
 {
-	(void)map;
-	printf("%s\n", s);
-	// free_strs(map->grid);
-	// free(map->grid);
-	// system("leaks program");
-	exit(EXIT_SUCCESS);
+	ft_memset(game, 0, sizeof(t_game));
+	game->scene.floor_color.r = -1;
+	game->scene.floor_color.g = -1;
+	game->scene.floor_color.b = -1;
+	game->scene.ceiling_color.r =  -1;
+	game->scene.ceiling_color.g =  -1;
+	game->scene.ceiling_color.b =  -1;
 }
