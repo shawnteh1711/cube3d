@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:24:15 by steh              #+#    #+#             */
-/*   Updated: 2022/10/10 15:22:27 by steh             ###   ########.fr       */
+/*   Updated: 2022/10/20 17:14:07 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,47 @@ void	update_player_orientation(t_player *player)
 	player->rotate_angle += rotation;
 }
 
+
+
+void	cast_ray(t_ray *ray, t_map *map, t_player *player)
+{
+	t_ray	hrzn_intersection;
+	t_ray	vrtl_intersection;
+
+	hrzn_intersection.angle = normalize_radian(ray->angle);
+	vrtl_intersection.angle = normalize_radian(ray->angle);
+	hrzn_intersection.side = 'H';
+	vrtl_intersection.side = 'V';
+	get_hrzn_intersection(&hrzn_intersection, map, player);
+	get_vrtl_intersection(&vrtl_intersection, map, player);
+	if (hrzn_intersection.size <= vrtl_intersection.size)
+		*ray = hrzn_intersection;
+	else
+		*ray = vrtl_intersection;
+}
+
+void	update_rays(t_game *game)
+{
+	double	ray_angle;
+	int		i;
+
+	ray_angle = game->player.rotate_angle - game->rays.view_angle / 2;
+	i = -1;
+	// while (++i < game->mlx.win_w)
+	while (++i < game->map.width)
+	{
+		game->rays.arr[i].angle = ray_angle;
+		cast_ray(&game->rays.arr[i], &game->map, &game->player);
+		ray_angle += game->rays.view_angle / game->mlx.win_w;
+	}
+}
+
 void	update(t_game *game)
 {
 	printf("updating\n");
 	printf("updating222\n");
 	update_player_position(&game->player, game->map.grid);
 	update_player_orientation(&game->player);
+	update_rays(game);
 
 }

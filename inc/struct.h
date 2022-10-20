@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:17:02 by steh              #+#    #+#             */
-/*   Updated: 2022/10/10 19:11:14 by steh             ###   ########.fr       */
+/*   Updated: 2022/10/20 17:39:53 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,11 @@
 
 # include <stdio.h>
 
+# define MINIMAP_RATIO 100
+# define MINIMAP_OFFSET 10
 # define VIEW_ANGLE 60
+# define SCALE 64
+
 # ifndef OS
 #  define K_ESC 53
 #  define K_W 13
@@ -92,10 +96,12 @@ typedef struct s_scene
 	t_texture	so_tex;
 	t_texture	we_tex;
 	t_texture	ea_tex;
+	t_texture	pacman;
 	t_color		floor_color;
 	t_color		ceiling_color;
 	t_texture	sprite_tex;
 	int			total_sprites;
+	int			mini_map_tile_size;
 	t_sprite	*sprites;
 }				t_scene;
 
@@ -148,7 +154,41 @@ typedef struct	s_rays
 	t_ray		*arr;
 	double		view_angle;
 	double		dist_proj_plane;
+	char		orientation;
 }				t_rays;
+
+typedef struct	s_rect
+{
+	int			x;
+	int			y;
+	double		width;
+	double		height;
+	int			fill_color;
+	int			border_color;
+	int			border_width;
+	t_texture	tex;
+	t_sprite	*sprite;
+}				t_rect;
+
+typedef struct	s_circle
+{
+	int			x;
+	int			y;
+	double		radius;
+	int			fill_color;
+	int			border_color;
+	int			border_width;
+}				t_circle;
+
+typedef struct	s_line
+{
+	int			begin_x;
+	int			begin_y;
+	int			end_x;
+	int			end_y;
+	int			color;
+	int			width;
+}				t_line;
 
 typedef struct s_game
 {

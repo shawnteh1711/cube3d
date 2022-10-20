@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:17:02 by steh              #+#    #+#             */
-/*   Updated: 2022/10/10 19:16:25 by steh             ###   ########.fr       */
+/*   Updated: 2022/10/20 16:00:55 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,17 +69,20 @@ void	ft_exit(char *s, t_map *map);
 // utils3.c
 double	deg_to_rad(double deg);
 int		create_argb(int a, int r, int g, int b);
+double	normalize_radian(double radian);
 
 // control.c
-int		key_hook(int keycode, t_map *map);
+// int		key_hook(int keycode, t_map *map);
+int		key_hook(int keycode, t_game *game);	
 
 // init.c
 void	init(t_game *game);
 
 // init_game.c
 void	init_game(t_game *game);
-void	init_map(t_game *game);
+void	init_others(t_game *game);
 int		render_next_frame(t_game *game);
+// int		render_next_frame(void *my_struct);
 void	init_player(t_game *game);
 void	player_start_position(t_player *player, char **grid);
 double	get_starting_orientation(char orientation);
@@ -100,4 +103,26 @@ int		close_window_cross(int keycode, t_game *game);
 // update_game.c
 void	update(t_game *game);
 
+
+// draw.c
+void	draw(t_game *game);
+
+
+// utils_rays.c
+int		is_south(double angle);
+int		is_west(double angle);
+int		is_wall(t_map *map, double x, double y, t_ray *ray);
+
+// cast_vert.c
+void	get_vrtl_intersection(t_ray *ray, t_map *map, t_player *player);
+
+
+// cast_hort.c
+void	get_hrzn_intersection(t_ray *ray, t_map *map, t_player *player);
+
+// cast_rays.c
+void	get_hrzn_intersection_south(t_ray *ray, t_map *map, t_player *player);
+void	get_hrzn_intersection_north(t_ray *ray, t_map *map, t_player *player);
+void	get_vrtl_intersection_west(t_ray *ray, t_map *map, t_player *player);
+void	get_vrtl_intersection_east(t_ray *ray, t_map *map, t_player *player);
 #endif
