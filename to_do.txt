@@ -2,10 +2,15 @@ to do
 
 1. handle tab in map
 2. handle newline in between map
-3. check map is enclosed with wall or space
+3. check map is enclosed with wall or space (need to redo to check if 0 exposed)
 4. check invalid character
 5. check if more than one player spawning position
 6. check if texture path valid and exist
 7. learn about basic raycasting
 8. check if unknown identifier or missing identifier
+9. handle if a row less than longest column, maybe add padding.
+10. check if unknow character inside
 
+// flow chart
+check file -> parse map -> parse info -> sets rays -> draw floor, ceiling, wall
+->draw mini map

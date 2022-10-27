@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 21:52:52 by steh              #+#    #+#             */
-/*   Updated: 2022/10/10 19:22:34 by steh             ###   ########.fr       */
+/*   Updated: 2022/10/27 19:47:44 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int argc, char *argv[])
 		if (fd == -1)
 			exit(EXIT_SUCCESS);
 		get_file(fd, &game);
-		ck_map(&game);
+		ck_info(&game);
 		init_game(&game);
 	}
 	close(fd);

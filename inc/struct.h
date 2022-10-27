@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:17:02 by steh              #+#    #+#             */
-/*   Updated: 2022/10/20 17:39:53 by steh             ###   ########.fr       */
+/*   Updated: 2022/10/27 18:21:36 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdio.h>
 
-# define MINIMAP_RATIO 100
+# define MINIMAP_RATIO 200
 # define MINIMAP_OFFSET 10
 # define VIEW_ANGLE 60
 # define SCALE 64

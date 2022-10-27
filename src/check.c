@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 14:55:52 by steh              #+#    #+#             */
-/*   Updated: 2022/10/07 22:05:24 by steh             ###   ########.fr       */
+/*   Updated: 2022/10/27 19:06:18 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,33 @@ void	check_map(t_map *map)
 	check_first_last_row(map);
 	check_middle_row(map);
 	check_unwanted_char(map);
+}
+
+int		check_map_enclosed(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (map->grid[++i])
+	{
+		j = -1;
+		while (map->grid[i][++j])
+		{
+			if (map->grid[i][j] != '1' && map->grid[i][j] != ' ')
+			{
+				if (i == 0 || j == 0 || i == map->height - 1 || j == map->width - 1)
+					return (0);
+				else if (map->grid[i - 1][j - 1] == ' ' || map->grid[i - 1][j] == ' '
+					|| map->grid[i - 1][j + 1] == ' ' || map->grid[i][j + 1] == ' '
+					|| map->grid[i + 1][j + 1] == ' ' || map->grid[i + 1][j] == ' '
+					|| map->grid[i + 1][j - 1] == ' ' || map->grid[i][j - 1] == ' ')
+					{
+						printf("grid[%d][%d]: %c\n", i, j, map->grid[i][j]);
+						return (0);
+					}
+			}
+		}
+	}
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:21:40 by steh              #+#    #+#             */
-/*   Updated: 2022/10/10 18:58:00 by steh             ###   ########.fr       */
+/*   Updated: 2022/10/27 19:41:04 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	get_file(int fd, t_game *game)
 			get_data(strs, &game->scene);
 			free_strs(strs);
 			free(strs);
-		}		
+		}
 		free(line);
 		line = get_next_line(fd);
 	}

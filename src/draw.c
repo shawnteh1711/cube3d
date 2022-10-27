@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 09:32:08 by steh              #+#    #+#             */
-/*   Updated: 2022/10/20 17:41:41 by steh             ###   ########.fr       */
+/*   Updated: 2022/10/27 18:43:35 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	draw_ceilling(t_game *game)
 	rect.height = game->mlx.win_h / 2;
 	rect.border_width = 0;
 	rect.fill_color = game->scene.ceiling_color.argb;
-	printf("color: %d\n", rect.fill_color);
 	draw_rect(&rect, game->mlx.img.data, game->mlx.win_w);
 }
 
@@ -116,14 +115,9 @@ void	draw_line(t_line *line, int *img, int res_width)
 	double	pixel_x;
 	double	pixel_y;
 
-	printf("line end x: %d\n", line->end_x);
-	printf("line begin x: %d\n", line->begin_x);
 	delta_x = line->end_x - line->begin_x;
-	printf("delta x : %f\n", delta_x);
 	delta_y = line->end_y - line->begin_y;
-	printf("delta y : %f\n", delta_y);
 	pixels = sqrt(pow(delta_x, 2) + pow(delta_y, 2));
-	printf("pixel : %d\n", pixels);
 	delta_x /= pixels;
 	delta_y /= pixels;
 	pixel_x = line->begin_x;
@@ -143,7 +137,7 @@ void	draw_rays(t_game *game, double tile_size)
 	t_line	line;
 
 	i = -1;
-	while (game->map.grid[++i])
+	while (++i < game->mlx.win_w)
 	{
 		line.begin_x = game->player.x * tile_size + MINIMAP_OFFSET;
 		line.begin_y = game->player.y * tile_size + MINIMAP_OFFSET;
@@ -184,12 +178,9 @@ void	draw_player(t_game *game, double tile_size)
 
 	draw_rays(game, tile_size);
 	game->player.rad = ceil(tile_size / 2);
-	printf("player x: %f\n", game->player.x);
-	printf("player y: %f\n", game->player.y);
 	circle.x = game->player.x * tile_size + MINIMAP_OFFSET;
 	circle.y = game->player.y * tile_size + MINIMAP_OFFSET;
 	circle.radius = game->player.rad;
-	printf("rad: %f\n", game->player.rad);
 	circle.fill_color = 0x00e63946;
 	while (circle.radius--)
 		draw_circle(&circle, game->mlx.img.data, game->mlx.win_w);

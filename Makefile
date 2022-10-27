@@ -6,7 +6,7 @@
 #    By: steh <steh@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/31 12:49:52 by steh              #+#    #+#              #
-#    Updated: 2022/10/17 22:00:26 by steh             ###   ########.fr        #
+#    Updated: 2022/10/27 18:58:07 by steh             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ _YEL		= \033[0;33m
 _CYN		= \033[0;36m
 
 CC				:= gcc
-CFLAGS			:= -Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS			:= -Wall -Werror -Wextra -g -O3 #-fsanitize=address
 SRC_DIR			:= src
 OBJ_DIR			:= obj
 HEAD_DIR		:= -Iinc
@@ -44,7 +44,6 @@ $(OBJ_DIR)/%.o	: $(SRC_DIR)/%.c Makefile
 					@mkdir -p $(dir $@)
 					@$(CC) $(CFLAGS) $(HEAD_DIR) -Imlx -MMD -MP -c $< -o $@
 					@echo "$(_GREEN) Compiling $(_YEL) $< $(_RESET)"
-
 
 $(LIBFT)		:
 					@make -s -C libft

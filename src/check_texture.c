@@ -6,14 +6,46 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 22:09:26 by steh              #+#    #+#             */
-/*   Updated: 2022/10/10 19:16:40 by steh             ###   ########.fr       */
+/*   Updated: 2022/10/27 20:16:04 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cube3d.h"
 #include "../inc/struct.h"
 
-void	ck_map(t_game *game)
+int		map_unknown_char(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (map->grid[++i])
+	{
+		j = -1;
+		while (map->grid[i][++j]) 
+		{
+			if (!ft_strchr("10NSEW ", map->grid[i][j]))
+				return (1);
+		}
+	}
+	return (0);
+}
+
+void	ck_maps(t_map *map)
+{
+	if (map->grid == 0)
+	{
+		printf("Error\nThe map is missing.\n");
+		exit(EXIT_SUCCESS);
+	}
+	if (map_unknown_char(map))
+	{
+		printf("Error\nUnknown character in map.\n");
+		exit(EXIT_SUCCESS);
+	}
+}
+
+void	ck_info(t_game *game)
 {
 	ck_texture(game->scene.no_tex.path, "NO");
 	ck_texture(game->scene.so_tex.path, "SO");
@@ -21,6 +53,7 @@ void	ck_map(t_game *game)
 	ck_texture(game->scene.ea_tex.path, "EA");
 	ck_color(&game->scene.floor_color, "floor color");
 	ck_color(&game->scene.ceiling_color, "ceiling color");
+	ck_maps(&game->map);
 }
 
 void	ck_texture(char *texture, char *desc)

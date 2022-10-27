@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:17:02 by steh              #+#    #+#             */
-/*   Updated: 2022/10/20 16:00:55 by steh             ###   ########.fr       */
+/*   Updated: 2022/10/27 19:48:24 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,14 @@ int		check_file(char **argv);
 void	check_map(t_map *map);
 void	check_tab(char *line);
 void	check_newline(char *line);
+void	ck_maps(t_map *map);
 
 // check2.c
 int		check_file_extension(char *filename, char *ck_ext);
 int		check_file_exits(char *filename);
 
 // check_texture.c
-void	ck_map(t_game *game);
+void	ck_info(t_game *game);
 void	ck_texture(char *texture, char *desc);
 void	ck_color(t_color *color, char *color_name);
 
@@ -43,6 +44,7 @@ void	ck_color(t_color *color, char *color_name);
 void	check_first_last_row(t_map *map);
 void	check_middle_row(t_map *map);
 void	check_unwanted_char(t_map *map);
+int		check_map_enclosed(t_map *map);
 
 
 // get_map.c

@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:18:02 by steh              #+#    #+#             */
-/*   Updated: 2022/10/10 18:59:17 by steh             ###   ########.fr       */
+/*   Updated: 2022/10/27 19:42:23 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ char	**copy_map(int fd, char *line)
 
 	i = 0;
 	arr = (char **)malloc(sizeof(char *));
+	if (!arr)
+		exit(EXIT_SUCCESS);
+	
 	while (1)
 	{
 		arr = ft_realloc(arr, (i + 1) * sizeof(char *),
@@ -32,6 +35,7 @@ char	**copy_map(int fd, char *line)
 		check_newline(line);
 		n = ft_strlen_cube3d(line);
 		arr[i++] = ft_strdup2(line, n);
+		// arr[i++] = ft_strdup(line);
 		// printf("%s", line);
 		// free(line);   // uncomment to avoid leak. Comment now because fsanatize issue
 		line = get_next_line(fd);
@@ -51,12 +55,43 @@ void	ft_realloc_protected(void **ptr, size_t orig_size, size_t new_size)
 		exit(EXIT_SUCCESS);
 }
 
+void	add_padding(t_map *map)
+{
+	size_t	i;
+	size_t	j;
+	size_t	len;
+
+	i = -1;
+	while (++i < (size_t)map->height)
+	{
+		j = -1;
+		len = ft_strlen_cube3d(map->grid[i]);
+		printf("len: %zu\n", len);
+		if (len < (size_t)map->width)
+			ft_realloc_protected((void **)&map->grid[i], len + 1, map->width + 1);
+		while (++j < (size_t)map->width)
+		{
+			if (j >= len)
+				map->grid[i][j] = ' ';
+		}
+		map->grid[i][j] = '\0';
+	}
+}
+
 // get the map information.
 void	get_map(int fd, char *line, t_map *map)
 {
 	map->grid = copy_map(fd, line);
 	extract_dimension(map);
-	check_map(map);
+	add_padding(map);
+	// check_map(map);
+	if (!check_map_enclosed(map))
+	{
+		printf("map not enclosed\n");
+		// system("leaks program");
+		exit(EXIT_SUCCESS);
+	}
+	
 	// for (int i = 0; i < map->height; i++)
 	// {
 	// 	printf("%s\n", map->grid[i]);

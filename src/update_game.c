@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:24:15 by steh              #+#    #+#             */
-/*   Updated: 2022/10/20 17:14:07 by steh             ###   ########.fr       */
+/*   Updated: 2022/10/21 14:41:28 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ void	update_rays(t_game *game)
 
 	ray_angle = game->player.rotate_angle - game->rays.view_angle / 2;
 	i = -1;
-	// while (++i < game->mlx.win_w)
-	while (++i < game->map.width)
+	while (++i < game->mlx.win_w)
+	// while (++i < game->map.width)
 	{
 		game->rays.arr[i].angle = ray_angle;
 		cast_ray(&game->rays.arr[i], &game->map, &game->player);
@@ -87,8 +87,7 @@ void	update_rays(t_game *game)
 
 void	update(t_game *game)
 {
-	printf("updating\n");
-	printf("updating222\n");
+	// printf("updating\n");
 	update_player_position(&game->player, game->map.grid);
 	update_player_orientation(&game->player);
 	update_rays(game);
