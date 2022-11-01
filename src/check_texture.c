@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 22:09:26 by steh              #+#    #+#             */
-/*   Updated: 2022/10/27 20:16:04 by steh             ###   ########.fr       */
+/*   Updated: 2022/10/27 20:22:30 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,12 @@ void	ck_maps(t_map *map)
 	if (map_unknown_char(map))
 	{
 		printf("Error\nUnknown character in map.\n");
+		exit(EXIT_SUCCESS);
+	}
+	if (!check_map_enclosed(map))
+	{
+		printf("map not enclosed\n");
+		// system("leaks program");
 		exit(EXIT_SUCCESS);
 	}
 }

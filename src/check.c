@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 14:55:52 by steh              #+#    #+#             */
-/*   Updated: 2022/10/27 19:06:18 by steh             ###   ########.fr       */
+/*   Updated: 2022/10/31 22:02:35 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int		check_map_enclosed(t_map *map)
 					|| map->grid[i + 1][j + 1] == ' ' || map->grid[i + 1][j] == ' '
 					|| map->grid[i + 1][j - 1] == ' ' || map->grid[i][j - 1] == ' ')
 					{
-						printf("grid[%d][%d]: %c\n", i, j, map->grid[i][j]);
+						// printf("grid[%d][%d]: %c\n", i, j, map->grid[i][j]);
 						return (0);
 					}
 			}

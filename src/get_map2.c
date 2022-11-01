@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:21:40 by steh              #+#    #+#             */
-/*   Updated: 2022/10/27 19:41:04 by steh             ###   ########.fr       */
+/*   Updated: 2022/10/28 20:49:27 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,18 @@ void	get_file(int fd, t_game *game)
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		if (is_map(line))
-			get_map(fd, line, &game->map);
+		// if (is_map(line))
+		// 	get_map(fd, line, &game->map);
 		if (!is_map(line))
 		{
 			strs = ft_split(line, '\n');
 			get_data(strs, &game->scene);
 			free_strs(strs);
 			free(strs);
+			free(line);
 		}
-		free(line);
+		else
+			get_map(fd, line, &game->map);
 		line = get_next_line(fd);
 	}
 	// printf("no: %s\n", game->scene.no_tex.path);

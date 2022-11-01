@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 09:32:08 by steh              #+#    #+#             */
-/*   Updated: 2022/10/27 18:43:35 by steh             ###   ########.fr       */
+/*   Updated: 2022/11/01 20:34:52 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,7 +215,6 @@ int		get_bitmap_offset(t_ray *ray, int bitmap_width)
 	}
 	return (offset);
 }
-
 
 void	draw_wall_strip(t_rect *rect, int *img, t_mlx *res, t_ray *ray)
 {

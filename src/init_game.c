@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:28:25 by steh              #+#    #+#             */
-/*   Updated: 2022/10/27 17:11:47 by steh             ###   ########.fr       */
+/*   Updated: 2022/11/01 21:07:42 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int draw_linesss(void *mlx, void *win, int beginX, int beginY, int endX, int end
 
 int	render(t_game *game)
 {
+	mlx_clear_window(game->mlx.ptr, game->mlx.win);
 	game->mlx.img.ptr = mlx_new_image(game->mlx.ptr, game->mlx.win_w, game->mlx.win_h);
 	game->mlx.img.data = (int *)mlx_get_data_addr(game->mlx.img.ptr,
 								&game->mlx.img.bpp,
@@ -52,6 +53,12 @@ int	render(t_game *game)
 						game->mlx.img.ptr,
 						0,
 						0);
+	mlx_put_image_to_window(game->mlx.ptr, game->mlx.win, game->gun.img.ptr,
+							game->mlx.win_w / 2,
+							game->mlx.win_h - (192));
+	// mlx_put_image_to_window(game->mlx.ptr, game->mlx.win, game->gun.img.ptr,
+	// 						game->mlx.win_w / 2 - (128 * 3) / 2 - 50,
+	// 						game->mlx.win_h - (128 * 3));
 	mlx_destroy_image(game->mlx.ptr, game->mlx.img.ptr);
 	return (1);
 }
@@ -73,12 +80,10 @@ void	set_rays(t_game *game)
 		/ tan(game->rays.view_angle / 2);
 }
 
-
-
 void	init_player(t_game *game)
 {
 	game->player.walk_direction = 0;
-	game->player.speed = 0.75;
+	game->player.speed = 0.15;
 	game->player.turn_direction = 0;
 	game->player.rotate_speed = deg_to_rad(4);
 	player_start_position(&game->player, game->map.grid);
@@ -123,8 +128,17 @@ void	player_start_position(t_player *player, char **grid)
 	}
 }
 
+void	init_torch(t_game *game)
+{
+	game->gun.img.ptr = mlx_xpm_file_to_image(game->mlx.ptr, "img/torch_s.xpm",
+					&game->gun.width, &game->gun.height);
+	game->gun.img.data = (int *)mlx_get_data_addr(game->gun.img.ptr,
+		&game->gun.img.bpp, &game->gun.img.size, &game->gun.img.endian);
+}
+
 void	ready_game(t_game *game)
 {
+	init_torch(game);
 	init_player(game);
 	init_events(game);
 	init_others(game);
@@ -139,17 +153,6 @@ void	init_game(t_game *game)
 	game->mlx.win = mlx_new_window(game->mlx.ptr, game->mlx.win_w, game->mlx.win_h, "cub3d");
 	game->texture.width = 64;
 	game->texture.height = 64;
-	// game->scene.no_tex.width = 64;
-	// game->scene.no_tex.height = 64;
-	// game->scene.so_tex.width = 64;
-	// game->scene.so_tex.height = 64;
-	// game->scene.we_tex.width = 64;
-	// game->scene.we_tex.height = 64;
-	// game->scene.ea_tex.width = 64;
-	// game->scene.ea_tex.height = 64;
-	// game->scene.sprite_tex.width = 64;
-	// game->scene.sprite_tex.height = 64;
-	
 	// int	i = -1;
 	// while (game->map.grid[++i])
 	// {
@@ -161,24 +164,12 @@ void	init_game(t_game *game)
 	// 	}
 	// 	printf("]\n");
 	// }
-	
 	ready_game(game);
 	minimap(game);
-	// init_player(game);
-	// init_events(game);
-	// // init_sprites(game);
-	// init_others(game);
 }
-
-
-
-
 
 void	load_texture(void *mlx, t_texture *texture)
 {
-	// printf("path: %s\n", texture->path);
-	// printf("height: %d\n", texture->height);
-	// printf("width: %d\n", texture->width);
 	texture->img.ptr = mlx_xpm_file_to_image(mlx, texture->path,
 			&texture->width, &texture->height);
 	texture->img.data = (int *)mlx_get_data_addr(texture->img.ptr,
@@ -195,11 +186,12 @@ void	init_others(t_game *game)
 	load_texture(game->mlx.ptr, &game->scene.so_tex);
 	load_texture(game->mlx.ptr, &game->scene.we_tex);
 	load_texture(game->mlx.ptr, &game->scene.ea_tex);
+	load_texture(game->mlx.ptr, &game->scene.ea_tex);
+	
 }
 
 t_texture	get_wall(t_scene *scene, char orientation)
 {
-	// printf("orintation: %c\n", orientation);
 	if (orientation == 'N')
 		return (scene->no_tex);
 	else if (orientation == 'S')

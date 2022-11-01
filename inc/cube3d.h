@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:17:02 by steh              #+#    #+#             */
-/*   Updated: 2022/10/27 19:48:24 by steh             ###   ########.fr       */
+/*   Updated: 2022/10/31 17:04:32 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,9 @@ double	normalize_radian(double radian);
 
 // control.c
 // int		key_hook(int keycode, t_map *map);
-int		key_hook(int keycode, t_game *game);	
+// int		key_hook(int keycode, t_game *game);	
+int		key_hook(t_game *game);
+
 
 // init.c
 void	init(t_game *game);

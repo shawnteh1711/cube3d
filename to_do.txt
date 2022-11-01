@@ -10,6 +10,11 @@ to do
 8. check if unknown identifier or missing identifier
 9. handle if a row less than longest column, maybe add padding.
 10. check if unknow character inside
+11. understanding about calloc and realloc
+12. understanding about rays
+13. movement too slow
+14. bonux make own image like holding gun
+15. try using mouse to aim.
 
 // flow chart
 check file -> parse map -> parse info -> sets rays -> draw floor, ceiling, wall

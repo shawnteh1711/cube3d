@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:07:18 by steh              #+#    #+#             */
-/*   Updated: 2022/10/10 14:57:13 by steh             ###   ########.fr       */
+/*   Updated: 2022/10/28 21:14:12 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int		key_pressed(int keycode, t_game *game)
 	else if (keycode == K_ESC)
 	{
 		// free_game(game);
+		// system("leaks program");
 		exit(EXIT_SUCCESS);
 	}
 	return (1);

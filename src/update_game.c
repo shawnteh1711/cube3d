@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:24:15 by steh              #+#    #+#             */
-/*   Updated: 2022/10/21 14:41:28 by steh             ###   ########.fr       */
+/*   Updated: 2022/10/31 21:13:12 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ void	update_rays(t_game *game)
 
 void	update(t_game *game)
 {
-	// printf("updating\n");
 	update_player_position(&game->player, game->map.grid);
 	update_player_orientation(&game->player);
 	update_rays(game);

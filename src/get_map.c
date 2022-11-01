@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:18:02 by steh              #+#    #+#             */
-/*   Updated: 2022/10/27 19:42:23 by steh             ###   ########.fr       */
+/*   Updated: 2022/10/31 20:30:27 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ char	**copy_map(int fd, char *line)
 	arr = (char **)malloc(sizeof(char *));
 	if (!arr)
 		exit(EXIT_SUCCESS);
-	
 	while (1)
 	{
 		arr = ft_realloc(arr, (i + 1) * sizeof(char *),
@@ -37,7 +36,7 @@ char	**copy_map(int fd, char *line)
 		arr[i++] = ft_strdup2(line, n);
 		// arr[i++] = ft_strdup(line);
 		// printf("%s", line);
-		// free(line);   // uncomment to avoid leak. Comment now because fsanatize issue
+		free(line);   // uncomment to avoid leak. Comment now because fsanatize issue
 		line = get_next_line(fd);
 		if (!line)
 			break ;
@@ -66,7 +65,6 @@ void	add_padding(t_map *map)
 	{
 		j = -1;
 		len = ft_strlen_cube3d(map->grid[i]);
-		printf("len: %zu\n", len);
 		if (len < (size_t)map->width)
 			ft_realloc_protected((void **)&map->grid[i], len + 1, map->width + 1);
 		while (++j < (size_t)map->width)
@@ -85,12 +83,6 @@ void	get_map(int fd, char *line, t_map *map)
 	extract_dimension(map);
 	add_padding(map);
 	// check_map(map);
-	if (!check_map_enclosed(map))
-	{
-		printf("map not enclosed\n");
-		// system("leaks program");
-		exit(EXIT_SUCCESS);
-	}
 	
 	// for (int i = 0; i < map->height; i++)
 	// {

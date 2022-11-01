@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 21:52:52 by steh              #+#    #+#             */
-/*   Updated: 2022/10/27 19:47:44 by steh             ###   ########.fr       */
+/*   Updated: 2022/10/31 21:31:17 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@
 #include "../inc/struct.h"
 #include "../inc/cube3d.h"
 
+/**
+ * @brief Main function to check argv, parse map and init game
+ * @param argc check number of argc is equal to 2 to run program
+ * @param argv check path of map whether is in correct format or valid file
+ * @return int return 0 if successfully finish the program else EXIT(SUCCESS);
+ */
 
 int	main(int argc, char *argv[])
 {
@@ -33,7 +39,11 @@ int	main(int argc, char *argv[])
 		ck_info(&game);
 		init_game(&game);
 	}
+	if (argc == 1 || argc > 2)
+	{
+		printf("Error\nPlease enter ./program map/map.cub\n");
+		exit(EXIT_SUCCESS);
+	}
 	close(fd);
-	// system("leaks program");
 	return (0);
 }
