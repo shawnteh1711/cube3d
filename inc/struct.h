@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:17:02 by steh              #+#    #+#             */
-/*   Updated: 2022/10/31 16:21:21 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/08 21:09:54 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,14 @@
 #  define M_KEY_PRESS 1
 #  define M_KEY_RELEASE 2
 # endif
+
+/* sprite animation paths */
+# define SPRITE0 "./img/loli1.xpm"
+# define SPRITE1 "./img/loli2.xpm"
+# define SPRITE2 "./img/loli3.xpm"
+# define SPRITE3 "./img/loli4.xpm"
+# define SPRITE4 "./img/loli5.xpm"
+# define SPRITE5 "./img/loli6.xpm"
 
 typedef struct s_color
 {
@@ -190,6 +198,11 @@ typedef struct	s_line
 	int			width;
 }				t_line;
 
+typedef struct s_animation
+{
+	t_img		*images;
+}				t_animation;
+
 typedef struct s_game
 {
 	t_scene		scene;
@@ -201,6 +214,8 @@ typedef struct s_game
 	t_sprite	sprite;
 	t_rays		rays;
 	t_texture	gun;
+	t_animation	anime;
+	int			prev_mouse_x;
 }				t_game;
 
 #endif

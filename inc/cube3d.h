@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:17:02 by steh              #+#    #+#             */
-/*   Updated: 2022/10/31 17:04:32 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/08 20:11:03 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,4 +129,8 @@ void	get_hrzn_intersection_south(t_ray *ray, t_map *map, t_player *player);
 void	get_hrzn_intersection_north(t_ray *ray, t_map *map, t_player *player);
 void	get_vrtl_intersection_west(t_ray *ray, t_map *map, t_player *player);
 void	get_vrtl_intersection_east(t_ray *ray, t_map *map, t_player *player);
+
+// sprite.c
+void	sprite(t_game *game);
+
 #endif

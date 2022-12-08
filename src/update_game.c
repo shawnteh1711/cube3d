@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:24:15 by steh              #+#    #+#             */
-/*   Updated: 2022/10/31 21:13:12 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/08 14:56:59 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,4 @@ void	update(t_game *game)
 	update_player_position(&game->player, game->map.grid);
 	update_player_orientation(&game->player);
 	update_rays(game);
-
 }

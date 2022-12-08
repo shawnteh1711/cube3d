@@ -6,7 +6,7 @@
 #    By: steh <steh@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/31 12:49:52 by steh              #+#    #+#              #
-#    Updated: 2022/10/28 21:43:15 by steh             ###   ########.fr        #
+#    Updated: 2022/12/08 20:24:31 by steh             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ HEAD_DIR		:= -Iinc
 DEPENDS 		:= $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.d, $(SRC))
 SRC				:= $(wildcard $(SRC_DIR)/*.c)
 OBJ				:= $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
-MLX				:= -lmlx -framework OpenGL -framework Appkit -lz
+# MLX				:= -lmlx -framework OpenGL -framework Appkit -lz
+LIBMLX 			= libmlx.dylib
 LIB				:= -L./libft -I./libft -lft
 # LIBFT			:= libft.a
 NAME			= program
@@ -35,7 +36,8 @@ all				: $(NAME)
 
 $(NAME)			: $(OBJ) #$(LIBFT)
 					@make -s -C libft
-					@$(CC) $(CFLAGS) $(LIB) $(MLX) $^ -o $@
+					@$(CC) $(CFLAGS) $(LIB) $(LIBMLX) $^ -o $@
+					# @$(CC) $(CFLAGS) $(LIB) $(MLX) $^ -o $@
 					@echo "$(_GREEN) Project Compiled $(_RESET)"
 
 -include $(DEPENDS)

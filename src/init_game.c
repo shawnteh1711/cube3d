@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:28:25 by steh              #+#    #+#             */
-/*   Updated: 2022/11/01 21:07:42 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/08 21:22:16 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,40 @@ int draw_linesss(void *mlx, void *win, int beginX, int beginY, int endX, int end
 	return (1);
 }
 
+void	better_angle(double *angle)
+{
+	if (*angle < 0.0)
+		*angle += 360.0;
+	else if (*angle >= 360.0)
+		*angle -= 360.0;
+}
+
+void	handle_mouse(t_game *game)
+{
+	int	x;
+	int	y;
+	int	diff;
+
+	x = 0;
+	y = 0;
+	mlx_mouse_get_pos(game->mlx.win, &x, &y);
+	diff = game->prev_mouse_x - x;
+	printf("diff: %d\n", diff);
+	printf("b rotation: %f \n", game->player.rotate_angle);
+	game->player.rotate_angle += (diff / 5);
+	better_angle(&(game->player.rotate_angle));
+	printf("a rotation: %f \n", game->player.rotate_angle);
+	printf("b x: %f\n", game->player.x);
+	printf("b y: %f\n", game->player.y);
+	game->player.x += cos(game->player.rotate_angle) * game->player.speed;
+	game->player.y += sin(game->player.rotate_angle) * game->player.speed;
+	printf("a x: %f\n", game->player.x);
+	printf("a y: %f\n", game->player.y);
+	// game->player.turn_direction = 1;
+	mlx_mouse_move(game->mlx.win, game->prev_mouse_x , game->mlx.win_h / 2);
+	// game->player.
+}
+
 int	render(t_game *game)
 {
 	mlx_clear_window(game->mlx.ptr, game->mlx.win);
@@ -48,14 +82,13 @@ int	render(t_game *game)
 								);
 	update(game);
 	draw(game);
+	handle_mouse(game);
 	mlx_put_image_to_window(game->mlx.ptr,
 						game->mlx.win,
 						game->mlx.img.ptr,
 						0,
 						0);
-	mlx_put_image_to_window(game->mlx.ptr, game->mlx.win, game->gun.img.ptr,
-							game->mlx.win_w / 2,
-							game->mlx.win_h - (192));
+	sprite(game);
 	// mlx_put_image_to_window(game->mlx.ptr, game->mlx.win, game->gun.img.ptr,
 	// 						game->mlx.win_w / 2 - (128 * 3) / 2 - 50,
 	// 						game->mlx.win_h - (128 * 3));
@@ -136,9 +169,29 @@ void	init_torch(t_game *game)
 		&game->gun.img.bpp, &game->gun.img.size, &game->gun.img.endian);
 }
 
+void	put_anime_image(t_game *game, int i, char *path)
+{
+	(game->anime.images)[i].ptr = mlx_xpm_file_to_image(game->mlx.ptr, path,
+					&game->texture.width, &game->texture.height);
+	(game->anime.images)[i].data = (int *)mlx_get_data_addr((game->anime.images)[i].ptr,
+	&(game->anime.images)[i].bpp, &(game->anime.images)[i].size, &(game->anime.images)[i].endian);
+}
+
+void	init_sprite(t_game *game)
+{
+	game->anime.images = (t_img *)malloc(sizeof(t_img) * 20);
+	put_anime_image(game, 0, SPRITE0);
+	put_anime_image(game, 1, SPRITE1);
+	put_anime_image(game, 2, SPRITE2);
+	put_anime_image(game, 3, SPRITE3);
+	put_anime_image(game, 4, SPRITE4);
+	put_anime_image(game, 5, SPRITE5);
+}
+
 void	ready_game(t_game *game)
 {
-	init_torch(game);
+	// init_torch(game);
+	init_sprite(game);
 	init_player(game);
 	init_events(game);
 	init_others(game);
@@ -151,8 +204,12 @@ void	init_game(t_game *game)
 	game->mlx.win_w = game->map.width * game->map.px;
 	game->mlx.win_h = game->map.height * game->map.px;
 	game->mlx.win = mlx_new_window(game->mlx.ptr, game->mlx.win_w, game->mlx.win_h, "cub3d");
-	game->texture.width = 64;
-	game->texture.height = 64;
+	game->texture.width = 165;
+	game->texture.height = 256;
+	mlx_mouse_move(game->mlx.win, game->mlx.win_w / 2, game->mlx.win_h / 2);
+	game->prev_mouse_x = game->mlx.win_w / 2;
+	// mlx_mouse_hide();
+
 	// int	i = -1;
 	// while (game->map.grid[++i])
 	// {
