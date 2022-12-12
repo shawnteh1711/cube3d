@@ -6,13 +6,13 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 15:54:07 by steh              #+#    #+#             */
-/*   Updated: 2022/10/28 21:48:13 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/12 17:34:20 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cube3d.h"
 
-int		is_south(double angle)
+int	is_south(double angle)
 {
 	if (0 <= angle && angle < M_PI)
 		return (1);
@@ -20,14 +20,13 @@ int		is_south(double angle)
 		return (0);
 }
 
-int		is_west(double angle)
+int	is_west(double angle)
 {
 	if (M_PI / 2 <= angle && angle < M_PI * 1.5)
 		return (1);
 	else
 		return (0);
 }
-
 
 char	get_wall_orientation(t_map *map, int x, int y, t_ray *ray)
 {
@@ -56,7 +55,7 @@ char	get_wall_orientation(t_map *map, int x, int y, t_ray *ray)
 	return (0);
 }
 
-int		is_wall(t_map *map, double x, double y, t_ray *ray)
+int	is_wall(t_map *map, double x, double y, t_ray *ray)
 {
 	ray->x = x;
 	ray->y = y;

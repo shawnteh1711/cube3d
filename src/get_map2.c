@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:21:40 by steh              #+#    #+#             */
-/*   Updated: 2022/10/28 20:49:27 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/12 15:54:33 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ void	extract_dimension(t_map *map)
 		map->height++;
 		i++;
 	}
-	// printf("width: %d\n", map->width);
-	// printf("height: %d\n", map->height);
 }
 
 void	get_file(int fd, t_game *game)
@@ -41,8 +39,6 @@ void	get_file(int fd, t_game *game)
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		// if (is_map(line))
-		// 	get_map(fd, line, &game->map);
 		if (!is_map(line))
 		{
 			strs = ft_split(line, '\n');
@@ -55,15 +51,5 @@ void	get_file(int fd, t_game *game)
 			get_map(fd, line, &game->map);
 		line = get_next_line(fd);
 	}
-	// printf("no: %s\n", game->scene.no_tex.path);
-	// printf("so: %s\n", game->scene.so_tex.path);
-	// printf("we: %s\n", game->scene.we_tex.path);
-	// printf("ea: %s\n", game->scene.ea_tex.path);
-	// printf("fr: %i\n", game->scene.floor_color.r);
-	// printf("fg: %i\n", game->scene.floor_color.g);
-	// printf("fb: %i\n", game->scene.floor_color.b);
-	// printf("cr: %i\n", game->scene.ceiling_color.r);
-	// printf("cg: %i\n", game->scene.ceiling_color.g);
-	// printf("cb: %i\n", game->scene.ceiling_color.b);
 	free(line);
 }

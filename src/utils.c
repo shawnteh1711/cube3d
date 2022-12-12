@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:11:34 by steh              #+#    #+#             */
-/*   Updated: 2022/10/26 20:58:56 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/12 15:54:41 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ char	*ft_strdup2(const char *src, size_t col_num)
 		i++;
 	}
 	dest[i] = '\0';
-	// printf("dest: [%s]\n", dest);
 	return (dest);
 }
 

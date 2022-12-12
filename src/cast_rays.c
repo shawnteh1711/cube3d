@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 15:55:07 by steh              #+#    #+#             */
-/*   Updated: 2022/10/26 15:16:04 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/12 16:38:45 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@ void	get_hrzn_intersection_north(t_ray *ray, t_map *map, t_player *player)
 		ray->size += ray_section;
 	}
 }
-
-
 
 void	get_vrtl_intersection_west(t_ray *ray, t_map *map, t_player *player)
 {

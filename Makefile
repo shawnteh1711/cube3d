@@ -6,7 +6,7 @@
 #    By: steh <steh@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/31 12:49:52 by steh              #+#    #+#              #
-#    Updated: 2022/12/08 20:24:31 by steh             ###   ########.fr        #
+#    Updated: 2022/12/12 17:32:47 by steh             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ _YEL		= \033[0;33m
 _CYN		= \033[0;36m
 
 CC				:= gcc
-CFLAGS			:= -Wall -Werror -Wextra -g #-O3 #-fsanitize=address
+CFLAGS			:= -Wall -Werror -Wextra -g #-fsanitize=address
 SRC_DIR			:= src
 OBJ_DIR			:= obj
 HEAD_DIR		:= -Iinc

@@ -6,77 +6,31 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:56:21 by steh              #+#    #+#             */
-/*   Updated: 2022/10/10 14:06:47 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/12 17:14:39 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../inc/struct.h"
+#include "../inc/cube3d.h"
 
-# include "../inc/struct.h"
-# include "../inc/cube3d.h"
-
-void	init_sprites(t_game *game)
+void	init_sprite(t_game *game)
 {
-	get_map_items(&game->scene, &game->map);
+	game->anime.images = (t_img *)malloc(sizeof(t_img) * 20);
+	put_anime_image(game, 0, SPRITE0);
+	put_anime_image(game, 1, SPRITE1);
+	put_anime_image(game, 2, SPRITE2);
+	put_anime_image(game, 3, SPRITE3);
+	put_anime_image(game, 4, SPRITE4);
+	put_anime_image(game, 5, SPRITE5);
 }
 
-/*
-** Parses the grid and adds a sprite each time it finds one
-** @param:	- [t_scene *] scene struct
-**			- [t_map *] map struct with grid, height and width
-*/
-
-void	get_map_items(t_scene *scene, t_map *map)
+void	put_anime_image(t_game *game, int i, char *path)
 {
-	int		i;
-	int		j;
-
-	scene->total_sprites = 0;
-	i = -1;
-	while (map->grid[++i])
-	{
-		j = -1;
-		while (map->grid[i][++j])
-		{
-			if (map->grid[i][j] == '2')
-			{
-				add_sprite(scene, j, i);
-				scene->total_sprites++;
-			}
-		}
-	}
-}
-
-/*
-** Sprites are stored in an array of t_sprite
-** @param:	- [t_scene *] scene struct
-**			- [int] x position of the sprite in the grid
-** Line-by-line comments:
-** @3-8		If it's the first sprite added, I need to malloc. That way I'm
-**			sure I can realloc on the standard case
-** @9-16	It's not the first so we realloc to total + 1
-** @18-19	The sprites need to be in the center of the grid boxes
-*/
-
-void	add_sprite(t_scene *scene, int x, int y)
-{
-	int	last_sprite_index;
-
-	if (scene->total_sprites == 0)
-	{
-		scene->sprites = malloc(sizeof(t_sprite));
-		if (!scene->sprites)
-			exit(EXIT_SUCCESS);
-	}
-	else
-	{
-		scene->sprites = ft_realloc(scene->sprites,
-				scene->total_sprites * sizeof(t_sprite),
-				(scene->total_sprites + 1) * sizeof(t_sprite));
-		if (!scene->sprites)
-			exit(EXIT_SUCCESS);
-	}
-	last_sprite_index = scene->total_sprites;
-	scene->sprites[last_sprite_index].x = (double)x + 0.5;
-	scene->sprites[last_sprite_index].y = (double)y + 0.5;
-	scene->sprites[last_sprite_index].tex = &scene->sprite_tex;
+	(game->anime.images)[i].ptr = mlx_xpm_file_to_image(game->mlx.ptr, path,
+			&game->texture.width, &game->texture.height);
+	(game->anime.images)[i].data = (int *)mlx_get_data_addr((
+				game->anime.images)[i].ptr,
+			&(game->anime.images)[i].bpp,
+			&(game->anime.images)[i].size,
+			&(game->anime.images)[i].endian);
 }

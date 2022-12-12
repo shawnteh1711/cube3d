@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 21:02:14 by steh              #+#    #+#             */
-/*   Updated: 2022/10/28 21:19:36 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/12 16:50:38 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	check_file_extension(char *filename, char *ck_ext)
 int	check_file_exits(char *filename)
 {
 	int	fd;
-	
+
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 	{

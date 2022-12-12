@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 22:05:00 by steh              #+#    #+#             */
-/*   Updated: 2022/10/07 17:18:04 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/12 16:52:56 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,36 +63,30 @@ void	check_middle_row(t_map *map)
 	}
 }
 
-void		check_unwanted_char(t_map *map)
+void	check_unwanted_char(t_map *map)
 {
-	int i;
-	int j;
-	int width;
+	int	i;
+	int	j;
+	int	width;
 
-	i = 0;
+	i = -1;
 	width = 0;
 	map->position = 0;
-	while (i < map->height)
+	while (++i < map->height)
 	{
 		width = ft_strlen_cube3d(map->grid[i]);
-		// printf("map->height: %d\n", map->height);
-		// printf("width: %d\n", width);
-		j = 0;
-		while (j < width)
+		j = -1;
+		while (++j < width)
 		{
 			if (!ft_strchr("01NSEW ", map->grid[i][j]))
 			{
-				printf("map->grid[%d][%d]: %c\n", i, j,  map->grid[i][j]);
+				printf("map->grid[%d][%d]: %c\n", i, j, map->grid[i][j]);
 				ft_exit("map contains invalid character", map);
 			}
 			if (ft_strchr("NSEW", map->grid[i][j]))
 				map->position += 1;
-			j++;
 		}
-		i++;
 	}
-	// printf("map->positon: %d\n", map->position);
 	if (map->position != 1)
 		ft_exit("map error starting position", map);
-	
 }

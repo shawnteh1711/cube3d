@@ -1,23 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils2.c                                           :+:      :+:    :+:   */
+/*   free_games.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/06 22:19:02 by steh              #+#    #+#             */
-/*   Updated: 2022/12/12 17:33:26 by steh             ###   ########.fr       */
+/*   Created: 2022/12/12 17:02:39 by steh              #+#    #+#             */
+/*   Updated: 2022/12/12 17:10:00 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../inc/struct.h"
 #include "../inc/cube3d.h"
 
-void	ft_exit(char *s, t_map *map)
+void	free_game(t_game *game)
 {
-	(void)map;
-	printf("%s\n", s);
-	free_strs(map->grid);
+	free_scene(&game->scene, &game->map);
+	free(game->rays.arr);
+}
+
+void	free_scene(t_scene *scene, t_map *map)
+{
+	free(scene->no_tex.path);
+	free(scene->so_tex.path);
+	free(scene->we_tex.path);
+	free(scene->ea_tex.path);
+	free(scene->sprite_tex.path);
+	free_map(map);
+	free(scene->sprites);
+}
+
+void	free_map(t_map *map)
+{
+	int	i;
+
+	i = -1;
+	while (++i < map->height)
+	{
+		free(map->grid[i]);
+	}
 	free(map->grid);
-	// system("leaks program");
-	exit(EXIT_SUCCESS);
 }

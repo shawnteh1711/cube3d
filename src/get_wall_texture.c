@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cast_hort.c                                        :+:      :+:    :+:   */
+/*   get_wall_texture.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/20 16:01:28 by steh              #+#    #+#             */
-/*   Updated: 2022/12/12 16:38:27 by steh             ###   ########.fr       */
+/*   Created: 2022/12/12 16:30:01 by steh              #+#    #+#             */
+/*   Updated: 2022/12/12 16:30:11 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../inc/struct.h"
 #include "../inc/cube3d.h"
 
-void	get_hrzn_intersection(t_ray *ray, t_map *map, t_player *player)
+t_texture	get_wall_texture(t_scene *scene, char orientation)
 {
-	ray->size = 0;
-	if (ray->angle == deg_to_rad(180) || ray->angle == deg_to_rad(360))
-	{
-		ray->size = INT_MAX;
-		return ;
-	}
-	if (is_south(ray->angle))
-		get_hrzn_intersection_south(ray, map, player);
+	if (orientation == 'N')
+		return (scene->no_tex);
+	else if (orientation == 'S')
+		return (scene->so_tex);
+	else if (orientation == 'E')
+		return (scene->ea_tex);
 	else
-		get_hrzn_intersection_north(ray, map, player);
+		return (scene->we_tex);
 }

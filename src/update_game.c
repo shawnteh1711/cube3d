@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:24:15 by steh              #+#    #+#             */
-/*   Updated: 2022/12/08 14:56:59 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/12 17:31:28 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ void	update_player_orientation(t_player *player)
 	rotation = player->turn_direction * player->speed;
 	player->rotate_angle += rotation;
 }
-
-
 
 void	cast_ray(t_ray *ray, t_map *map, t_player *player)
 {

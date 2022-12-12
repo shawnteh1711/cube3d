@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 14:55:52 by steh              #+#    #+#             */
-/*   Updated: 2022/10/31 22:02:35 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/12 16:49:49 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int	check_file(char **argv)
 {
-	int fd;
+	int	fd;
 
 	fd = check_file_exits(argv[1]);
 	if (fd == -1)
@@ -27,8 +27,8 @@ int	check_file(char **argv)
 
 void	check_tab(char *line)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (line[i])
 	{
@@ -45,8 +45,8 @@ void	check_tab(char *line)
 
 void	check_newline(char *line)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (line[i])
 	{
@@ -61,7 +61,6 @@ void	check_newline(char *line)
 	}
 }
 
-// printf("map->grid[%d][%d]: %c\n", i, j, map->grid[i][j]);
 void	check_map(t_map *map)
 {
 	check_first_last_row(map);
@@ -69,29 +68,27 @@ void	check_map(t_map *map)
 	check_unwanted_char(map);
 }
 
-int		check_map_enclosed(t_map *map)
+int	check_map_enclosed(t_map *map, char **grid)
 {
 	int	i;
 	int	j;
 
 	i = -1;
-	while (map->grid[++i])
+	while (grid[++i])
 	{
 		j = -1;
-		while (map->grid[i][++j])
+		while (grid[i][++j])
 		{
-			if (map->grid[i][j] != '1' && map->grid[i][j] != ' ')
+			if (grid[i][j] != '1' && grid[i][j] != ' ')
 			{
-				if (i == 0 || j == 0 || i == map->height - 1 || j == map->width - 1)
+				if (i == 0 || j == 0
+					|| i == map->height - 1 || j == map->width - 1)
 					return (0);
-				else if (map->grid[i - 1][j - 1] == ' ' || map->grid[i - 1][j] == ' '
-					|| map->grid[i - 1][j + 1] == ' ' || map->grid[i][j + 1] == ' '
-					|| map->grid[i + 1][j + 1] == ' ' || map->grid[i + 1][j] == ' '
-					|| map->grid[i + 1][j - 1] == ' ' || map->grid[i][j - 1] == ' ')
-					{
-						// printf("grid[%d][%d]: %c\n", i, j, map->grid[i][j]);
-						return (0);
-					}
+				else if (grid[i - 1][j - 1] == ' ' || grid[i - 1][j] == ' '
+					|| grid[i - 1][j + 1] == ' ' || grid[i][j + 1] == ' '
+					|| grid[i + 1][j + 1] == ' ' || grid[i + 1][j] == ' '
+					|| grid[i + 1][j - 1] == ' ' || grid[i][j - 1] == ' ')
+					return (0);
 			}
 		}
 	}
