@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:17:02 by steh              #+#    #+#             */
-/*   Updated: 2022/12/08 21:09:54 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/12 17:52:19 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@
 #  define K_LEFT_ARROW 65361
 #  define K_RIGHT_ARROW 65363
 # endif
-
 
 # ifndef OS
 #  define DESTROY_NOTIFY 17
@@ -88,7 +87,7 @@ typedef struct s_texture
 	int			height;
 }				t_texture;
 
-typedef struct	s_sprite
+typedef struct s_sprite
 {
 	double		x;
 	double		y;
@@ -144,7 +143,7 @@ typedef struct s_player
 	double		rotate_speed;
 }				t_player;
 
-typedef struct	s_ray
+typedef struct s_ray
 {
 	double		x;
 	double		y;
@@ -157,7 +156,7 @@ typedef struct	s_ray
 	double		y_step;
 }				t_ray;
 
-typedef struct	s_rays
+typedef struct s_rays
 {
 	t_ray		*arr;
 	double		view_angle;
@@ -165,7 +164,7 @@ typedef struct	s_rays
 	char		orientation;
 }				t_rays;
 
-typedef struct	s_rect
+typedef struct s_rect
 {
 	int			x;
 	int			y;
@@ -178,7 +177,7 @@ typedef struct	s_rect
 	t_sprite	*sprite;
 }				t_rect;
 
-typedef struct	s_circle
+typedef struct s_circle
 {
 	int			x;
 	int			y;
@@ -188,7 +187,7 @@ typedef struct	s_circle
 	int			border_width;
 }				t_circle;
 
-typedef struct	s_line
+typedef struct s_line
 {
 	int			begin_x;
 	int			begin_y;
