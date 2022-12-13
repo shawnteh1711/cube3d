@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 16:05:50 by steh              #+#    #+#             */
-/*   Updated: 2022/12/12 17:17:00 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/13 16:09:01 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	handle_mouse(t_game *game)
 
 	mlx_mouse_get_pos(game->mlx.win, &x, &y);
 	diff = x - game->prev_mouse_x;
-	if (diff > 0)
+	if (diff > 30)
 		game->player.turn_direction += 1;
-	else if (diff < 0)
+	else if (diff < -30)
 		game->player.turn_direction -= 1;
 	else
 		game->player.turn_direction = 0;
