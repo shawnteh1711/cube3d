@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:17:02 by steh              #+#    #+#             */
-/*   Updated: 2022/12/12 17:52:19 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/15 15:38:45 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,12 @@
 # endif
 
 /* sprite animation paths */
-# define SPRITE0 "./img/loli1.xpm"
-# define SPRITE1 "./img/loli2.xpm"
-# define SPRITE2 "./img/loli3.xpm"
-# define SPRITE3 "./img/loli4.xpm"
-# define SPRITE4 "./img/loli5.xpm"
-# define SPRITE5 "./img/loli6.xpm"
+# define SPRITE0 "./img/worm1.xpm"
+# define SPRITE1 "./img/worm2.xpm"
+# define SPRITE2 "./img/worm3.xpm"
+# define SPRITE3 "./img/worm4.xpm"
+# define SPRITE4 "./img/worm5.xpm"
+# define SPRITE5 "./img/worm6.xpm"
 
 typedef struct s_color
 {
@@ -91,7 +91,8 @@ typedef struct s_sprite
 {
 	double		x;
 	double		y;
-	t_texture	*tex;
+	// t_texture	*tex;
+	t_texture	tex;
 	double		dist;
 	double		rotate_angle;
 	int			visible;
@@ -212,7 +213,7 @@ typedef struct s_game
 	t_player	player;
 	t_sprite	sprite;
 	t_rays		rays;
-	t_texture	gun;
+	t_sprite	door;
 	t_animation	anime;
 	int			prev_mouse_x;
 }				t_game;

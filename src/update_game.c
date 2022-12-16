@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:24:15 by steh              #+#    #+#             */
-/*   Updated: 2022/12/12 17:31:28 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/13 19:49:04 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,28 @@ void	update_rays(t_game *game)
 	}
 }
 
+
+void	update_sprite_visibility(t_game *game)
+{
+	double		delta_angle;
+
+	delta_angle = game->door.rotate_angle + game->player.rotate_angle;
+	delta_angle = game->player.rotate_angle - delta_angle;
+	if (delta_angle < -M_PI)
+		delta_angle += 2.0 * M_PI;
+	if (delta_angle > M_PI)
+		delta_angle -= 2.0 * M_PI;
+	delta_angle = fabs(delta_angle);
+	if (delta_angle < game->rays.view_angle / 2 + deg_to_rad(4))
+		game->door.visible = 1;
+	else
+		game->door.visible = 0;
+}
+
 void	update(t_game *game)
 {
 	update_player_position(&game->player, game->map.grid);
 	update_player_orientation(&game->player);
 	update_rays(game);
+	update_sprite_visibility(game);
 }

@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 16:11:50 by steh              #+#    #+#             */
-/*   Updated: 2022/12/12 17:12:28 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/13 20:05:17 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	init_others(t_game *game)
 	load_texture(game->mlx.ptr, &game->scene.we_tex);
 	load_texture(game->mlx.ptr, &game->scene.ea_tex);
 	load_texture(game->mlx.ptr, &game->scene.ea_tex);
+	game->door.tex.path = "/Users/steh/Documents/steh/own_piscine_repo/cube3d/img/wall.xpm";
+	load_texture(game->mlx.ptr, &game->door.tex);
 }
 
 void	set_rays(t_game *game)

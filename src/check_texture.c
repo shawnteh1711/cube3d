@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 22:09:26 by steh              #+#    #+#             */
-/*   Updated: 2022/12/12 16:55:52 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/15 14:22:10 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	map_unknown_char(t_map *map)
 		j = -1;
 		while (map->grid[i][++j])
 		{
-			if (!ft_strchr("10NSEW ", map->grid[i][j]))
+			if (!ft_strchr("01DNSEW ", map->grid[i][j]))
 				return (1);
 		}
 	}

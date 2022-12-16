@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 22:05:00 by steh              #+#    #+#             */
-/*   Updated: 2022/12/12 16:52:56 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/15 14:23:44 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	check_unwanted_char(t_map *map)
 		j = -1;
 		while (++j < width)
 		{
-			if (!ft_strchr("01NSEW ", map->grid[i][j]))
+			if (!ft_strchr("01DNSEW ", map->grid[i][j]))
 			{
 				printf("map->grid[%d][%d]: %c\n", i, j, map->grid[i][j]);
 				ft_exit("map contains invalid character", map);

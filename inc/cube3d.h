@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:17:02 by steh              #+#    #+#             */
-/*   Updated: 2022/12/12 17:48:23 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/15 15:55:41 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,9 @@ double		get_starting_orientation(char orientation);
 // init_sprite.c
 void		init_sprite(t_game *game);
 void		put_anime_image(t_game *game, int i, char *path);
-void		set_anime(t_game *game, int *frame, int *i);
+// void		set_anime(t_game *game, int *frame, int *i);
+void		put_anime(t_game *game, int frame, int *i);
+void		set_anime(t_game *game, int frame, int *i);
 
 // init_events.c
 void		init_events(t_game *game);
