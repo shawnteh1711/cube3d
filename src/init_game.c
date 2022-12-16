@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:28:25 by steh              #+#    #+#             */
-/*   Updated: 2022/12/16 15:14:00 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/16 16:11:50 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	init_game(t_game *game)
 			game->mlx.win_h, "cub3d");
 	game->texture.width = 165;
 	game->texture.height = 256;
+	game->map.door_count = 0;
 	mlx_mouse_move(game->mlx.win, game->mlx.win_w / 2, game->mlx.win_h / 2);
 	game->prev_mouse_x = game->mlx.win_w / 2;
 	mlx_mouse_hide();

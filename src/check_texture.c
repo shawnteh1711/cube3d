@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 22:09:26 by steh              #+#    #+#             */
-/*   Updated: 2022/12/15 14:22:10 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/16 16:12:18 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void	ck_info(t_game *game)
 	ck_texture(game->scene.so_tex.path, "SO");
 	ck_texture(game->scene.we_tex.path, "WE");
 	ck_texture(game->scene.ea_tex.path, "EA");
+	if (game->map.door_count == 1)
+		ck_texture(game->scene.do_tex.path, "DO");
 	ck_color(&game->scene.floor_color, "floor color");
 	ck_color(&game->scene.ceiling_color, "ceiling color");
 	ck_maps(&game->map);

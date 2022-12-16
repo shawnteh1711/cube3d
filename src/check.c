@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 14:55:52 by steh              #+#    #+#             */
-/*   Updated: 2022/12/12 16:49:49 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/16 16:27:34 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ void	check_newline(char *line)
 	i = 0;
 	while (line[i])
 	{
-		if (line[0] == '\n')
+		if (line[0] == '\n' || line[0] == '\0')
 		{
-			printf("map cannot contain empty line\n");
+			printf("Error.\n Map cannot contain empty line\n");
 			free(line);
-			system("leaks program");
+			// system("leaks program");
 			exit(EXIT_SUCCESS);
 		}
 		i++;

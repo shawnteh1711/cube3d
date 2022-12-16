@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 15:59:21 by steh              #+#    #+#             */
-/*   Updated: 2022/12/12 16:01:06 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/16 15:29:32 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,6 @@ void	get_data(char **strs, t_scene *scene)
 		get_color(&strs[0][2], &scene->floor_color);
 	else if (ft_strstr(strs[0], "C") != NULL && strs[1] == NULL)
 		get_color(&strs[0][2], &scene->ceiling_color);
+	else if (ft_strstr(strs[0], "DO") != NULL && strs[1] == NULL)
+		get_texture(&strs[0][3], &scene->do_tex);	
 }

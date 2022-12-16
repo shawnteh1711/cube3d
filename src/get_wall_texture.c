@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 16:30:01 by steh              #+#    #+#             */
-/*   Updated: 2022/12/12 16:30:11 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/16 15:47:33 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ t_texture	get_wall_texture(t_scene *scene, char orientation)
 		return (scene->so_tex);
 	else if (orientation == 'E')
 		return (scene->ea_tex);
+	else if (orientation == 'D')
+		return (scene->do_tex);
 	else
 		return (scene->we_tex);
 }

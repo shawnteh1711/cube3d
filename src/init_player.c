@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 16:09:01 by steh              #+#    #+#             */
-/*   Updated: 2022/12/12 17:12:39 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/16 15:36:40 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	init_player(t_game *game)
 	game->player.speed = 0.15;
 	game->player.turn_direction = 0;
 	game->player.rotate_speed = deg_to_rad(4);
+	game->player.door_s = 0;
 	player_start_position(&game->player, game->map.grid);
 }
 

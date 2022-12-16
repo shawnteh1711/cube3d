@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:07:18 by steh              #+#    #+#             */
-/*   Updated: 2022/12/12 17:10:51 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/16 16:43:25 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,13 @@ int	key_pressed(int keycode, t_game *game)
 		game->player.turn_direction = -1;
 	else if (keycode == K_RIGHT_ARROW)
 		game->player.turn_direction = 1;
+	else if (keycode == K_SP)
+	{
+		if (game->player.door_s == DOOR_CLOSE)
+			game->player.door_s = DOOR_OPEN;
+		else
+			game->player.door_s = DOOR_CLOSE;
+	}
 	else if (keycode == K_ESC)
 	{
 		free_game(game);

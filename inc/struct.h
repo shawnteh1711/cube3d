@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:17:02 by steh              #+#    #+#             */
-/*   Updated: 2022/12/15 15:38:45 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/16 16:11:05 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # define MINIMAP_OFFSET 10
 # define VIEW_ANGLE 60
 # define SCALE 64
+# define DOOR_CLOSE 0
+# define DOOR_OPEN 1
 
 # ifndef OS
 #  define K_ESC 53
@@ -28,6 +30,7 @@
 #  define K_D 2
 #  define K_LEFT_ARROW 123
 #  define K_RIGHT_ARROW 124
+#  define K_SP 49
 # else
 #  define K_ESC 65307
 #  define K_W 122
@@ -36,6 +39,7 @@
 #  define K_D 100
 #  define K_LEFT_ARROW 65361
 #  define K_RIGHT_ARROW 65363
+#  define K_SP 32
 # endif
 
 # ifndef OS
@@ -104,6 +108,7 @@ typedef struct s_scene
 	t_texture	so_tex;
 	t_texture	we_tex;
 	t_texture	ea_tex;
+	t_texture	do_tex;
 	t_texture	pacman;
 	t_color		floor_color;
 	t_color		ceiling_color;
@@ -121,6 +126,8 @@ typedef struct s_map
 	int			error;
 	int			position;
 	int			px;
+	int			door_st;
+	int			door_count;
 }				t_map;
 
 typedef struct s_mlx
@@ -142,6 +149,7 @@ typedef struct s_player
 	int			turn_direction;
 	double		rotate_angle;
 	double		rotate_speed;
+	int			door_s;
 }				t_player;
 
 typedef struct s_ray

@@ -6,13 +6,14 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:24:15 by steh              #+#    #+#             */
-/*   Updated: 2022/12/13 19:49:04 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/16 15:49:15 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/struct.h"
 #include "../inc/cube3d.h"
 
+// 0 IS CLOSE
 void	update_player_position(t_player *player, char **grid)
 {
 	double	move_step;
@@ -33,11 +34,17 @@ void	update_player_position(t_player *player, char **grid)
 		rotation = player->rotate_angle + deg_to_rad(90);
 	player->x += cos(rotation) * move_step;
 	player->y += sin(rotation) * move_step;
-	if (ft_strchr("12", grid[(int)player->y][(int)player->x]))
+	if (player->door_s == DOOR_OPEN && ft_strchr("12", grid[(int)player->y][(int)player->x]))
 	{
 		player->x -= cos(rotation) * move_step;
 		player->y -= sin(rotation) * move_step;
 	}
+	else if (player->door_s == DOOR_CLOSE && ft_strchr("12D", grid[(int)player->y][(int)player->x]))
+	{
+		player->x -= cos(rotation) * move_step;
+		player->y -= sin(rotation) * move_step;
+	}
+	
 }
 
 void	update_player_orientation(t_player *player)
@@ -72,6 +79,7 @@ void	update_rays(t_game *game)
 	double	ray_angle;
 	int		i;
 
+	game->map.door_st = game->player.door_s;
 	ray_angle = game->player.rotate_angle - game->rays.view_angle / 2;
 	i = -1;
 	while (++i < game->mlx.win_w)

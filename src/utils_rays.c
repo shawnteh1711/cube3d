@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 15:54:07 by steh              #+#    #+#             */
-/*   Updated: 2022/12/12 17:34:20 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/16 15:50:10 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,11 @@ int	is_wall(t_map *map, double x, double y, t_ray *ray)
 	if (ray->obstacle == '1')
 	{
 		ray->orientation = get_wall_orientation(map, (int)x, (int)y, ray);
+		return (1);
+	}
+	if (ray->obstacle == 'D' && map->door_st == DOOR_CLOSE)
+	{
+		ray->orientation = 'D';
 		return (1);
 	}
 	return (0);
