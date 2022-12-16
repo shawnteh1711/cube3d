@@ -6,7 +6,7 @@
 #    By: steh <steh@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/31 12:49:52 by steh              #+#    #+#              #
-#    Updated: 2022/12/16 17:00:03 by steh             ###   ########.fr        #
+#    Updated: 2022/12/16 19:20:11 by steh             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ OBJ				:= $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
 LIBMLX 			= libmlx.dylib
 LIB				:= -L./libft -I./libft -lft
 # LIBFT			:= libft.a
-NAME			= program
+NAME			= cub3D
 all				: $(NAME)
 				 ./$(NAME) ./maps/minimalistic.cub
 				@#  ./$(NAME) a.cuba

@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:17:02 by steh              #+#    #+#             */
-/*   Updated: 2022/12/16 16:11:05 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/16 21:20:47 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,20 +102,27 @@ typedef struct s_sprite
 	int			visible;
 }				t_sprite;
 
+typedef struct s_identifier
+{
+	const char	*identifier;
+	void		*data;
+}				t_identifier;
+
 typedef struct s_scene
 {
-	t_texture	no_tex;
-	t_texture	so_tex;
-	t_texture	we_tex;
-	t_texture	ea_tex;
-	t_texture	do_tex;
-	t_texture	pacman;
-	t_color		floor_color;
-	t_color		ceiling_color;
-	t_texture	sprite_tex;
-	int			total_sprites;
-	int			mini_map_tile_size;
-	t_sprite	*sprites;
+	t_texture		no_tex;
+	t_texture		so_tex;
+	t_texture		we_tex;
+	t_texture		ea_tex;
+	t_texture		do_tex;
+	t_texture		pacman;
+	t_color			floor_color;
+	t_color			ceiling_color;
+	t_texture		sprite_tex;
+	int				total_sprites;
+	int				mini_map_tile_size;
+	t_sprite		*sprites;
+	t_identifier	identifier;
 }				t_scene;
 
 typedef struct s_map

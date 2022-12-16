@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:17:02 by steh              #+#    #+#             */
-/*   Updated: 2022/12/15 15:55:41 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/16 19:44:21 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int			is_str_digit(char *c);
 
 // utils2.c
 void		ft_exit(char *s, t_map *map);
+void		ft_exit2(char *s);
 
 // utils3.c
 double		deg_to_rad(double deg);

@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 22:05:00 by steh              #+#    #+#             */
-/*   Updated: 2022/12/16 16:12:34 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/16 19:54:16 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	check_unwanted_char(t_map *map)
 			}
 			if (ft_strchr("NSEW", map->grid[i][j]))
 				map->position += 1;
-			if (map->grid[i][j] ==  'D')
+			if (map->grid[i][j] == 'D')
 				map->door_count += 1;
 		}
 	}
