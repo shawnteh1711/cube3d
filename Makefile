@@ -6,7 +6,7 @@
 #    By: steh <steh@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/31 12:49:52 by steh              #+#    #+#              #
-#    Updated: 2022/12/19 17:04:05 by steh             ###   ########.fr        #
+#    Updated: 2022/12/19 17:13:28 by steh             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,12 +26,9 @@ DEPENDS 		:= $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.d, $(SRC))
 SRC				:= $(wildcard $(SRC_DIR)/*.c)
 OBJ				:= $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
 
-
-# MLX				= -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit
-
 MLX				:= -lmlx -framework OpenGL -framework Appkit -lz
 LIBMLX 			= libmlx.dylib
-# LIBMLX			= libmlx.a
+# LIBMLX		= libmlx.a
 LIB				:= -L./libft -I./libft -lft
 # LIBFT			:= libft.a
 NAME			= cub3D
