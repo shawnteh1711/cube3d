@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 15:59:21 by steh              #+#    #+#             */
-/*   Updated: 2022/12/16 22:37:06 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/19 16:34:59 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	get_color(char *color_path, t_color *color)
 	color_path = ft_strtrim(color_path, " \t");
 	color_split = ft_split(color_path, ',');
 	if (!ft_isdigit(color_path[ft_strlen(color_path) - 1]))
-		ft_exit2("Error\nInvalid character at the end of color code\n");
+		ft_exit2("Error\nInvalid character at the end of color code");
 	while (color_split[i] && is_str_digit(color_split[i]))
 		i++;
 	if (i == 3)
@@ -41,7 +41,7 @@ void	get_color(char *color_path, t_color *color)
 		color->b = ft_atoi(color_split[2]);
 	}
 	else
-		ft_exit2("Error\nInvalid color code\n");
+		ft_exit2("Error\nInvalid color code");
 	free_strs(color_split);
 	free(color_split);
 	free(color_path);

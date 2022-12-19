@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:07:18 by steh              #+#    #+#             */
-/*   Updated: 2022/12/16 19:21:28 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/19 16:35:35 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	key_pressed(int keycode, t_game *game)
 	else if (keycode == K_ESC)
 	{
 		free_game(game);
-		system("leaks cub3D");
+		// system("leaks cub3D");
 		exit(EXIT_SUCCESS);
 	}
 	return (1);

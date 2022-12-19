@@ -6,7 +6,7 @@
 #    By: steh <steh@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/31 12:49:52 by steh              #+#    #+#              #
-#    Updated: 2022/12/16 19:20:11 by steh             ###   ########.fr        #
+#    Updated: 2022/12/19 17:04:05 by steh             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,15 +18,20 @@ _YEL		= \033[0;33m
 _CYN		= \033[0;36m
 
 CC				:= gcc
-CFLAGS			:= -Wall -Werror -Wextra -g #-fsanitize=address
+CFLAGS			:= -Wall -Werror -Wextra -g -fsanitize=address
 SRC_DIR			:= src
 OBJ_DIR			:= obj
 HEAD_DIR		:= -Iinc
 DEPENDS 		:= $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.d, $(SRC))
 SRC				:= $(wildcard $(SRC_DIR)/*.c)
 OBJ				:= $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
-# MLX				:= -lmlx -framework OpenGL -framework Appkit -lz
+
+
+# MLX				= -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit
+
+MLX				:= -lmlx -framework OpenGL -framework Appkit -lz
 LIBMLX 			= libmlx.dylib
+# LIBMLX			= libmlx.a
 LIB				:= -L./libft -I./libft -lft
 # LIBFT			:= libft.a
 NAME			= cub3D
