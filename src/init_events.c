@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:07:18 by steh              #+#    #+#             */
-/*   Updated: 2022/12/20 15:57:37 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/20 19:53:35 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	init_events(t_game *game)
 
 int	key_pressed(int keycode, t_game *game)
 {
+	mouse_event(game, keycode);
 	if (keycode == K_W)
 		game->player.walk_direction = 'w';
 	else if (keycode == K_A)
@@ -37,16 +38,10 @@ int	key_pressed(int keycode, t_game *game)
 	else if (keycode == K_RIGHT_ARROW)
 		game->player.turn_direction = 1;
 	else if (keycode == K_SP)
-	{
-		if (game->player.door_s == DOOR_CLOSE)
-			game->player.door_s = DOOR_OPEN;
-		else
-			game->player.door_s = DOOR_CLOSE;
-	}
+		change_door(game);
 	else if (keycode == K_ESC)
 	{
 		free_game(game);
-		// system("leaks cub3D");
 		exit(EXIT_SUCCESS);
 	}
 	return (1);

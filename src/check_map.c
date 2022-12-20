@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 22:05:00 by steh              #+#    #+#             */
-/*   Updated: 2022/12/16 19:54:16 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/20 19:43:38 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,8 @@ void	check_middle_row(t_map *map)
 	}
 }
 
-void	check_unwanted_char(t_map *map)
+void	check_unwanted_char(t_map *map, int i, int j)
 {
-	int	i;
-	int	j;
 	int	width;
 
 	i = -1;

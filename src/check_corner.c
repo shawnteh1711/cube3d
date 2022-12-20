@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   update_game.c                                      :+:      :+:    :+:   */
+/*   check_corner.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:24:15 by steh              #+#    #+#             */
-/*   Updated: 2022/12/20 16:12:54 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/20 19:37:58 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,30 @@ static int	check_corner_backward(t_player *p, char **g, int b_x, int b_y)
 	return (0);
 }
 
-int check_corner(t_player *p, char **g)
+int	check_corner(t_player *p, char **g)
 {
-    if (p->walk_direction == 'w')
-        return (check_corner_forward(p, g, p->b_x, p->b_y));
-    else if (p->walk_direction == 's')
-        return (check_corner_backward(p, g, p->b_x, p->b_y));
-    return (0);
+	if (p->walk_direction == 'w')
+		return (check_corner_forward(p, g, p->b_x, p->b_y));
+	else if (p->walk_direction == 's')
+		return (check_corner_backward(p, g, p->b_x, p->b_y));
+	return (0);
+}
+
+void	wall_collision(t_player *player, char **grid,
+		double rotation, double move_step)
+{
+	if (player->door_s == DOOR_CLOSE
+		&& (ft_strchr("12D", grid[(int)player->y][(int)player->x])
+		|| check_corner(player, grid)))
+	{
+		player->x -= cos(rotation) * move_step;
+		player->y -= sin(rotation) * move_step;
+	}
+	else if (player->door_s == DOOR_OPEN
+		&& (ft_strchr("12", grid[(int)player->y][(int)player->x])
+		|| check_corner(player, grid)))
+	{
+		player->x -= cos(rotation) * move_step;
+		player->y -= sin(rotation) * move_step;
+	}
 }

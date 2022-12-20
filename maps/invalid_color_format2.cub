@@ -5,4 +5,4 @@ EA ./img/path_to_the_east_texture.xpm
 DO ./img/door.xpm
 
 F 0,0,255
-C 225,30,0,
+C 225,30,0!

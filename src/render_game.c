@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 16:14:07 by steh              #+#    #+#             */
-/*   Updated: 2022/12/20 15:56:51 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/20 18:14:12 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	render(t_game *game)
 			);
 	update(game);
 	draw(game);
-	handle_mouse(game);
 	mlx_put_image_to_window(game->mlx.ptr,
 		game->mlx.win,
 		game->mlx.img.ptr,

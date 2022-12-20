@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:17:02 by steh              #+#    #+#             */
-/*   Updated: 2022/12/20 16:08:51 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/20 20:01:02 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 
 # ifndef OS
 #  define K_ESC 53
+#  define K_M 46
 #  define K_W 13
 #  define K_A 0
 #  define K_S 1
@@ -97,7 +98,6 @@ typedef struct s_sprite
 {
 	double		x;
 	double		y;
-	// t_texture	*tex;
 	t_texture	tex;
 	double		dist;
 	double		rotate_angle;
@@ -235,6 +235,7 @@ typedef struct s_game
 	t_sprite	door;
 	t_animation	anime;
 	int			prev_mouse_x;
+	int			mouse_s;
 	int			music;
 }				t_game;
 

@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:17:02 by steh              #+#    #+#             */
-/*   Updated: 2022/12/16 19:44:21 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/20 20:00:31 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void		ck_color(t_color *color, char *color_name);
 // check_map.c
 void		check_first_last_row(t_map *map);
 void		check_middle_row(t_map *map);
-void		check_unwanted_char(t_map *map);
+void		check_unwanted_char(t_map *map, int i, int j);
 int			check_map_enclosed(t_map *map, char **grid);
 
 // get_map.c
@@ -71,10 +71,9 @@ void		ft_exit2(char *s);
 double		deg_to_rad(double deg);
 int			create_argb(int a, int r, int g, int b);
 double		normalize_radian(double radian);
+void		change_door(t_game *game);
 
 // control.c
-// int		key_hook(int keycode, t_map *map);
-// int		key_hook(int keycode, t_game *game);	
 int			key_hook(t_game *game);
 
 // init.c
@@ -84,7 +83,6 @@ void		init(t_game *game);
 void		init_game(t_game *game);
 void		ready_game(t_game *game);
 int			render_next_frame(t_game *game);
-// int		render_next_frame(void *my_struct);
 
 // init_others.c
 void		init_others(t_game *game);
@@ -175,10 +173,30 @@ void		sprite(t_game *game);
 
 // mouse.c
 void		handle_mouse(t_game *game);
+void		mouse_event(t_game *game, int keycode);
+void		update_mouse(t_game *game);
 
 // free_game
 void		free_game(t_game *game);
 void		free_scene(t_scene *scene, t_map *map);
 void		free_map(t_map *map);
+
+// check_corner.c
+int			check_corner(t_player *p, char **g);
+void		wall_collision(t_player *player, char **grid, double rotation,
+				double move_step);
+
+// quadrant.c
+int			first_quadrant(t_player *p, char **g, int b_x, int b_y);
+int			second_quadrant(t_player *p, char **g, int b_x, int b_y);
+int			third_quadrant(t_player *p, char **g, int b_x, int b_y);
+int			fourth_quadrant(t_player *p, char **g, int b_x, int b_y);
+
+// update_game2.c
+void		update_player_position(t_player *player, char **grid);
+void		update_player_orientation(t_player *player);
+void		cast_ray(t_ray *ray, t_map *map, t_player *player);
+void		update_rays(t_game *game);
+void		update_sprite_visibility(t_game *game);
 
 #endif

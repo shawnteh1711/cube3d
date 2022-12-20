@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 14:55:52 by steh              #+#    #+#             */
-/*   Updated: 2022/12/16 16:27:34 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/20 19:44:03 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	check_tab(char *line)
 		{
 			printf("map cannot contain tab\n");
 			free(line);
-			// system("leaks program");
 			exit(EXIT_SUCCESS);
 		}
 		i++;
@@ -54,7 +53,6 @@ void	check_newline(char *line)
 		{
 			printf("Error.\n Map cannot contain empty line\n");
 			free(line);
-			// system("leaks program");
 			exit(EXIT_SUCCESS);
 		}
 		i++;
@@ -65,7 +63,7 @@ void	check_map(t_map *map)
 {
 	check_first_last_row(map);
 	check_middle_row(map);
-	check_unwanted_char(map);
+	check_unwanted_char(map, -1, -1);
 }
 
 int	check_map_enclosed(t_map *map, char **grid)

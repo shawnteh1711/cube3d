@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:18:02 by steh              #+#    #+#             */
-/*   Updated: 2022/12/16 16:38:45 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/20 19:50:01 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,5 @@ void	get_map(int fd, char *line, t_map *map)
 	map->grid = copy_map(fd, line);
 	extract_dimension(map);
 	add_padding(map);
-	check_unwanted_char(map);
+	check_unwanted_char(map, -1, -1);
 }
