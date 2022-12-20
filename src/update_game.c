@@ -6,12 +6,37 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:24:15 by steh              #+#    #+#             */
-/*   Updated: 2022/12/16 15:49:15 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/20 16:12:54 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/struct.h"
 #include "../inc/cube3d.h"
+
+static int	check_corners(t_player *player, char **grid, int b_x, int b_y)
+{
+	if (player->rotate_angle > 0 && player->rotate_angle < (0.5 * M_PI))
+	{
+		if ((b_x == (int)player->x - 1 && b_y == (int)player->y - 1) && (grid[(int)player->y][(int)player->x - 1] == 'D' && grid[(int)player->y - 1][(int)player->x] == 'D'))
+			return (1);
+	}
+	if (player->rotate_angle > (0.5 * M_PI) && player->rotate_angle < M_PI)
+	{
+		if ((b_x == (int)player->x + 1 && b_y == (int)player->y - 1) && (grid[(int)player->y][(int)player->x + 1] == 'D' && grid[(int)player->y - 1][(int)player->x] == 'D'))
+			return (1);
+	}
+	if (player->rotate_angle > M_PI && player->rotate_angle < (M_PI * 1.5))
+	{
+		if ((b_x == (int)player->x + 1 && b_y == (int)player->y + 1) && (grid[(int)player->y][(int)player->x + 1] == 'D' && grid[(int)player->y + 1][(int)player->x] == 'D'))
+			return (1);
+	}
+	if (player->rotate_angle > (1.5 * M_PI) && player->rotate_angle < (2 * M_PI))
+	{
+		if ((b_x == (int)player->x - 1 && b_y == (int)player->y + 1) && (grid[(int)player->y][(int)player->x - 1] == 'D' && grid[(int)player->y + 1][(int)player->x] == 'D'))
+			return (1);
+	}
+	return (0);
+}
 
 // 0 IS CLOSE
 void	update_player_position(t_player *player, char **grid)
@@ -19,6 +44,8 @@ void	update_player_position(t_player *player, char **grid)
 	double	move_step;
 	double	rotation;
 
+	player->b_x = (int)player->x;
+	player->b_y = (int)player->y;
 	if (player->walk_direction == 0)
 		return ;
 	move_step = player->speed;
@@ -34,17 +61,16 @@ void	update_player_position(t_player *player, char **grid)
 		rotation = player->rotate_angle + deg_to_rad(90);
 	player->x += cos(rotation) * move_step;
 	player->y += sin(rotation) * move_step;
-	if (player->door_s == DOOR_OPEN && ft_strchr("12", grid[(int)player->y][(int)player->x]))
+	if (player->door_s == DOOR_CLOSE && (ft_strchr("12D", grid[(int)player->y][(int)player->x]) || check_corners(player, grid, player->b_x, player->b_y)))
 	{
 		player->x -= cos(rotation) * move_step;
 		player->y -= sin(rotation) * move_step;
 	}
-	else if (player->door_s == DOOR_CLOSE && ft_strchr("12D", grid[(int)player->y][(int)player->x]))
+	else if (player->door_s == DOOR_OPEN && ft_strchr("12", grid[(int)player->y][(int)player->x]))
 	{
 		player->x -= cos(rotation) * move_step;
 		player->y -= sin(rotation) * move_step;
 	}
-	
 }
 
 void	update_player_orientation(t_player *player)

@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 16:25:46 by steh              #+#    #+#             */
-/*   Updated: 2022/12/12 17:15:40 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/19 20:35:02 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	draw_map(t_game *game)
 			rect.width = game->scene.mini_map_tile_size;
 			rect.height = game->scene.mini_map_tile_size;
 			rect.border_color = 0x0014213d;
-			rect.border_width = 2;
+			rect.border_width = 0;
 			rect.fill_color = get_fill_color(&game->scene.floor_color,
 					grid_item);
 			draw_rect(&rect, game->mlx.img.data, game->mlx.win_w);

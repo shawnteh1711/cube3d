@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:17:02 by steh              #+#    #+#             */
-/*   Updated: 2022/12/16 21:20:47 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/20 16:08:51 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # define SCALE 64
 # define DOOR_CLOSE 0
 # define DOOR_OPEN 1
+# define WIN_W 1280
+# define WIN_H 800
 
 # ifndef OS
 #  define K_ESC 53
@@ -150,6 +152,8 @@ typedef struct s_player
 {
 	double		x;
 	double		y;
+	int			b_x;
+	int			b_y;
 	double		rad;
 	char		walk_direction;
 	double		speed;
@@ -231,6 +235,7 @@ typedef struct s_game
 	t_sprite	door;
 	t_animation	anime;
 	int			prev_mouse_x;
+	int			music;
 }				t_game;
 
 #endif
