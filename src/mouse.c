@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 16:05:50 by steh              #+#    #+#             */
-/*   Updated: 2022/12/20 19:48:36 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/21 14:45:27 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	mouse_event(t_game *game, int keycode)
 {
 	if (keycode == K_M)
 	{
+		mlx_mouse_show();
 		if (game->mouse_s == 1)
 		{
 			game->mouse_s = 0;
