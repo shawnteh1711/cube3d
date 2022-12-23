@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 16:25:46 by steh              #+#    #+#             */
-/*   Updated: 2022/12/19 20:35:02 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/23 13:30:49 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	get_fill_color(t_color *floor_color, char grid_item)
 
 	if (grid_item == '1')
 		color = floor_color->argb;
-	else if (grid_item == '2')
+	else if (grid_item == 'D')
 		color = 0x00fca311;
 	else
 		color = 0x00FFFFFF;

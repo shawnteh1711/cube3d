@@ -6,13 +6,21 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 16:22:57 by steh              #+#    #+#             */
-/*   Updated: 2022/12/12 16:38:57 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/23 17:15:36 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/struct.h"
 #include "../inc/cube3d.h"
 
+/**
+ * @brief start from the corner of the screen 
+ * width of the whole screen height of half of the screen
+ * no border
+ * draw rect
+ * 
+ * @param game 
+ */
 void	draw_ceilling(t_game *game)
 {
 	t_rect	rect;

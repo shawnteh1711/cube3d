@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 22:09:26 by steh              #+#    #+#             */
-/*   Updated: 2022/12/16 22:25:56 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/22 17:04:18 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,12 @@ void	ck_maps(t_map *map)
 		printf("Error\nThe map is missing.\n");
 		exit(EXIT_SUCCESS);
 	}
-	if (map_unknown_char(map))
-	{
-		printf("Error\nUnknown character in map.\n");
-		exit(EXIT_SUCCESS);
-	}
+	// if (map_unknown_char(map))
+	// {
+	// 	printf("Error\nUnknown character in map.\n");
+	// 	exit(EXIT_SUCCESS);
+	// }
+	check_unwanted_char(map, -1, -1);
 	if (!check_map_enclosed(map, map->grid))
 	{
 		printf("map not enclosed\n");
@@ -52,6 +53,7 @@ void	ck_maps(t_map *map)
 
 void	ck_info(t_game *game)
 {
+	ck_maps(&game->map);
 	ck_texture(game->scene.no_tex.path, "NO");
 	ck_texture(game->scene.so_tex.path, "SO");
 	ck_texture(game->scene.we_tex.path, "WE");
@@ -60,7 +62,6 @@ void	ck_info(t_game *game)
 		ck_texture(game->scene.do_tex.path, "DO");
 	ck_color(&game->scene.floor_color, "floor color");
 	ck_color(&game->scene.ceiling_color, "ceiling color");
-	ck_maps(&game->map);
 }
 
 void	ck_texture(char *texture, char *desc)

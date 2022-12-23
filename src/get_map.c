@@ -6,16 +6,20 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:18:02 by steh              #+#    #+#             */
-/*   Updated: 2022/12/20 19:50:01 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/22 17:04:26 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cube3d.h"
 
-// if last line is empty, still acceptable as it return NULL and break.
-// if contain more than 2 empty line at bottom is not acceptable 
-// and throw error.
-// line: 36 free . uncomment to avoid leak. Comment now because fsanitize issue
+/**
+ * @brief copies the contents of the map into a new double array,
+ * checks if there are 
+ * 
+ * @param fd 
+ * @param line 
+ * @return char** 
+ */
 char	**copy_map(int fd, char *line)
 {
 	size_t	i;
@@ -79,5 +83,5 @@ void	get_map(int fd, char *line, t_map *map)
 	map->grid = copy_map(fd, line);
 	extract_dimension(map);
 	add_padding(map);
-	check_unwanted_char(map, -1, -1);
+	//check_unwanted_char(map, -1, -1);
 }

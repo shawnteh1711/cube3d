@@ -6,14 +6,27 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 19:56:07 by steh              #+#    #+#             */
-/*   Updated: 2022/12/20 19:57:08 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/23 17:49:31 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/struct.h"
 #include "../inc/cube3d.h"
 
-// 0 IS CLOSE
+/**
+ * @brief save the old pos of the player
+ * if w a s d is not pressed, return
+ * if s is pressed move step is -ve (backward)
+ * if w is pressed move step is +ve (forward)
+ * if a is pressed move step is -ve (left)
+ * if d is pressed move step is +ve (right)
+ * cos to find movement in the x axis
+ * sin to find movement in the y axis
+ * check if collide with wall
+ * 
+ * @param player 
+ * @param grid 
+ */
 void	update_player_position(t_player *player, char **grid)
 {
 	double	move_step;
@@ -39,6 +52,14 @@ void	update_player_position(t_player *player, char **grid)
 	wall_collision(player, grid, rotation, move_step);
 }
 
+/**
+ * @brief if no rotation return
+ * rotation is the turn direction * player speed
+ * if +ve clockwise, if -ve anti
+ * rotate angle + rotation to find updated orientation
+ * 
+ * @param player 
+ */
 void	update_player_orientation(t_player *player)
 {
 	double	rotation;
@@ -49,6 +70,18 @@ void	update_player_orientation(t_player *player)
 	player->rotate_angle += rotation;
 }
 
+/**
+ * @brief normalize the angles to make it be 0-360
+ * set horizontal side as 'H'
+ * set vertical side as 'V'
+ * get hrzn and vrtl intersection
+ * the lowest size is chosen as the optimum ray
+ * https://www.youtube.com/watch?v=eOCQfxRQ2pY
+ * 
+ * @param ray 
+ * @param map 
+ * @param player 
+ */
 void	cast_ray(t_ray *ray, t_map *map, t_player *player)
 {
 	t_ray	hrzn_intersection;
@@ -66,6 +99,15 @@ void	cast_ray(t_ray *ray, t_map *map, t_player *player)
 		*ray = vrtl_intersection;
 }
 
+/**
+ * @brief get the left most ray angle
+ * iterate through the screen width
+ * cast ray in the angle
+ * increment the angle according to the view angle and 
+ * window width
+ * 
+ * @param game 
+ */
 void	update_rays(t_game *game)
 {
 	double	ray_angle;
@@ -80,21 +122,4 @@ void	update_rays(t_game *game)
 		cast_ray(&game->rays.arr[i], &game->map, &game->player);
 		ray_angle += game->rays.view_angle / game->mlx.win_w;
 	}
-}
-
-void	update_sprite_visibility(t_game *game)
-{
-	double		delta_angle;
-
-	delta_angle = game->door.rotate_angle + game->player.rotate_angle;
-	delta_angle = game->player.rotate_angle - delta_angle;
-	if (delta_angle < -M_PI)
-		delta_angle += 2.0 * M_PI;
-	if (delta_angle > M_PI)
-		delta_angle -= 2.0 * M_PI;
-	delta_angle = fabs(delta_angle);
-	if (delta_angle < game->rays.view_angle / 2 + deg_to_rad(4))
-		game->door.visible = 1;
-	else
-		game->door.visible = 0;
 }

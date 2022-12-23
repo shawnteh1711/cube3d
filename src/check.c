@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 14:55:52 by steh              #+#    #+#             */
-/*   Updated: 2022/12/20 19:44:03 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/22 15:19:32 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ void	check_newline(char *line)
 
 void	check_map(t_map *map)
 {
-	check_first_last_row(map);
-	check_middle_row(map);
+	// check_first_last_row(map);
+	// check_middle_row(map);
 	check_unwanted_char(map, -1, -1);
 }
 

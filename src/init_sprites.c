@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:56:21 by steh              #+#    #+#             */
-/*   Updated: 2022/12/12 17:14:39 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/23 17:44:45 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	init_sprite(t_game *game)
 {
-	game->anime.images = (t_img *)malloc(sizeof(t_img) * 20);
+	game->anime.images = (t_img *)malloc(sizeof(t_img) * 6);
 	put_anime_image(game, 0, SPRITE0);
 	put_anime_image(game, 1, SPRITE1);
 	put_anime_image(game, 2, SPRITE2);

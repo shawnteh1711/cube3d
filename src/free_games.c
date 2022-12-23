@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 17:02:39 by steh              #+#    #+#             */
-/*   Updated: 2022/12/12 17:10:00 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/23 17:17:49 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	free_scene(t_scene *scene, t_map *map)
 	free(scene->we_tex.path);
 	free(scene->ea_tex.path);
 	free(scene->sprite_tex.path);
+	if (map->door_count >= 1)
+		free(scene->do_tex.path);
 	free_map(map);
 	free(scene->sprites);
 }

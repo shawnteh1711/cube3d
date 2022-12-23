@@ -6,12 +6,30 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 15:55:07 by steh              #+#    #+#             */
-/*   Updated: 2022/12/12 16:38:45 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/22 20:39:16 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cube3d.h"
 
+/**
+ * @brief Get the hrzn intersection south object 
+ * get the closest grid value in y using ceil
+ * y step is calculated 
+ * x step is calculated using trigo 
+ * get the closest grid value in x 
+ * calucate the ray length using pythagoras
+ * check if ray hit wall, if no cont
+ * set y step as 1
+ * find the corresponding x step
+ * find the new ray length
+ * loop finding the ray section until wall is hit
+ * same is done for NORTH just the opposite direction
+ * 
+ * @param ray 
+ * @param map 
+ * @param player 
+ */
 void	get_hrzn_intersection_south(t_ray *ray, t_map *map, t_player *player)
 {
 	double	a_x;
@@ -64,6 +82,14 @@ void	get_hrzn_intersection_north(t_ray *ray, t_map *map, t_player *player)
 	}
 }
 
+/**
+ * @brief same as hrztl just moving to the left/right 
+ * x step is set to 1 or -1 depending on west or east
+ * 
+ * @param ray 
+ * @param map 
+ * @param player 
+ */
 void	get_vrtl_intersection_west(t_ray *ray, t_map *map, t_player *player)
 {
 	double	a_x;

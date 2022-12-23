@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:17:02 by steh              #+#    #+#             */
-/*   Updated: 2022/12/20 20:00:31 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/23 15:11:45 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,9 +97,6 @@ double		get_starting_orientation(char orientation);
 // init_sprite.c
 void		init_sprite(t_game *game);
 void		put_anime_image(t_game *game, int i, char *path);
-// void		set_anime(t_game *game, int *frame, int *i);
-void		put_anime(t_game *game, int frame, int *i);
-void		set_anime(t_game *game, int frame, int *i);
 
 // init_events.c
 void		init_events(t_game *game);
@@ -170,6 +167,7 @@ void		get_vrtl_intersection_east(t_ray *ray, t_map *map,
 
 // sprite.c
 void		sprite(t_game *game);
+void		put_anime(t_game *game, int frame, int *i);
 
 // mouse.c
 void		handle_mouse(t_game *game);

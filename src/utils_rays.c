@@ -6,12 +6,19 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 15:54:07 by steh              #+#    #+#             */
-/*   Updated: 2022/12/16 15:50:10 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/22 21:07:31 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cube3d.h"
 
+/**
+ * @brief check if player is looking south
+ * if player is between 0 and 180, it is south
+ * 
+ * @param angle 
+ * @return int 
+ */
 int	is_south(double angle)
 {
 	if (0 <= angle && angle < M_PI)
@@ -20,6 +27,13 @@ int	is_south(double angle)
 		return (0);
 }
 
+/**
+ * @brief check if player is looking west
+ * if angle is between 90 and 270, looking west
+ * 
+ * @param angle 
+ * @return int 
+ */
 int	is_west(double angle)
 {
 	if (M_PI / 2 <= angle && angle < M_PI * 1.5)
@@ -28,6 +42,24 @@ int	is_west(double angle)
 		return (0);
 }
 
+/**
+ * @brief Get the wall orientation object
+ * handling the wall orientation at the corners
+ * if x == 0 wall is facing us in the easterly direction
+ * if x == width wall is facing us in the westerly direc
+ * if y == 0 wall is facing us in southerly direc
+ * if y == height wall is facing us in northerly direction
+ * if horizontal ray is chosen and we are looking south
+ * wall is facing north towards us
+ * else if looking north wall is facing south towards us
+ * same for vertical ray
+ * 
+ * @param map 
+ * @param x 
+ * @param y 
+ * @param ray 
+ * @return char 
+ */
 char	get_wall_orientation(t_map *map, int x, int y, t_ray *ray)
 {
 	if (x == 0)
@@ -55,6 +87,20 @@ char	get_wall_orientation(t_map *map, int x, int y, t_ray *ray)
 	return (0);
 }
 
+/**
+ * @brief checks if the x and y position is outside the map
+ * if yes return max int so ray is not chosen
+ * if ray has at max height, return ray obstacle as 1
+ * and orientation as north
+ * if ray has hit a wall or door, find the correction orientation
+ * of the wall to be drawn
+ * 
+ * @param map 
+ * @param x 
+ * @param y 
+ * @param ray 
+ * @return int 
+ */
 int	is_wall(t_map *map, double x, double y, t_ray *ray)
 {
 	ray->x = x;

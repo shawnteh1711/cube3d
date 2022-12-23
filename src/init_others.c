@@ -6,7 +6,7 @@
 /*   By: steh <steh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 16:11:50 by steh              #+#    #+#             */
-/*   Updated: 2022/12/19 20:26:57 by steh             ###   ########.fr       */
+/*   Updated: 2022/12/23 18:04:47 by steh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	init_others(t_game *game)
 	load_texture(game->mlx.ptr, &game->scene.so_tex);
 	load_texture(game->mlx.ptr, &game->scene.we_tex);
 	load_texture(game->mlx.ptr, &game->scene.ea_tex);
-	load_texture(game->mlx.ptr, &game->scene.ea_tex);
-	load_texture(game->mlx.ptr, &game->scene.do_tex);
+	if (game->map.door_count >= 1)
+		load_texture(game->mlx.ptr, &game->scene.do_tex);
 }
 
 void	set_rays(t_game *game)
